@@ -22,7 +22,27 @@ export default function Post({ eventId } = {}) {
         const res = await fetch(url);
         if (!res.ok) throw new Error(`Fehler beim Laden: ${res.status}`);
         const data = await res.json();
-        const event = eventId ? data : Array.isArray(data) ? data[0] : data;
+
+        let event = null;
+        if (eventId) {
+          event = data;
+        } else if (Array.isArray(data)) {
+          // map dates to timestamps
+          const withTs = data.map((e) => ({ ...e, _ts: Date.parse(e.date) }));
+          const now = Date.now();
+          // upcoming events: ts > now
+          const upcoming = withTs.filter((e) => !Number.isNaN(e._ts) && e._ts > now).sort((a, b) => a._ts - b._ts);
+          if (upcoming.length) {
+            event = upcoming[0];
+          } else {
+            // fallback: most recent past event
+            const past = withTs.filter((e) => !Number.isNaN(e._ts) && e._ts <= now).sort((a, b) => b._ts - a._ts);
+            event = past.length ? past[0] : null;
+          }
+        } else {
+          event = data;
+        }
+
         if (mounted) setEventData(event || null);
       } catch (err) {
         if (mounted) setError(err.message || String(err));
@@ -49,8 +69,7 @@ export default function Post({ eventId } = {}) {
       <h1 className="post-title">{eventData.title || 'Nächstes Event'}</h1>
       <p className="post-date">Findet statt am {dateStr}</p>
       {eventData.description && <p className="post-description">{eventData.description}</p>}
-      <h2 className="post-countdown"> In nur </h2>
-      <Countdown targetDate={new Date("2026-12-31T23:59:59").getTime()} />
+      <Countdown targetDate={eventData.date} onComplete={() => console.log('Event erreicht')} />
     </article>
   );
 }

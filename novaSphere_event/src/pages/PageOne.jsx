@@ -3,6 +3,9 @@ import "../styles/PageOne.css";
 
 const API_URL = "http://localhost:3001";
 
+const sortByDate = (arr) =>
+  [...arr].sort((a, b) => new Date(a.date) - new Date(b.date));
+
 export default function PageOne({ onNavigate }) {
   const [events, setEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -14,7 +17,7 @@ export default function PageOne({ onNavigate }) {
   const [editTitle, setEditTitle] = useState("");
   const [editDescription, setEditDescription] = useState("");
   const [editDate, setEditDate] = useState("");
-    
+
   useEffect(() => {
     async function loadEvents() {
       try {
@@ -23,7 +26,7 @@ export default function PageOne({ onNavigate }) {
           throw new Error("ERROR! Die Events konnten nicht geladen werden!");
         }
         const data = await response.json();
-        setEvents(data);
+        setEvents(sortByDate(data));
       } catch (err) {
         setError(err.message);
       } finally {
@@ -33,14 +36,12 @@ export default function PageOne({ onNavigate }) {
     loadEvents();
   }, []);
 
-
   async function handleApiResponse(response, errorMessage) {
     if (!response.ok) {
       throw new Error(errorMessage);
     }
     return response.status === 204 ? null : response.json();
   }
-
 
   const addEvent = async () => {
     if (newEventTitle.trim() && newEventDate) {
@@ -64,7 +65,7 @@ export default function PageOne({ onNavigate }) {
           "ERROR! Event konnte nicht gespeichert werden!"
         );
 
-        setEvents((prevEvents) => [...prevEvents, createdEvent]);
+        setEvents((prevEvents) => sortByDate([...prevEvents, createdEvent]));
         setNewEventTitle("");
         setNewEventDescription("");
         setNewEventDate("");
@@ -73,6 +74,7 @@ export default function PageOne({ onNavigate }) {
       }
     }
   };
+
   const startEdit = (id, title, description, date) => {
     setEditingId(id);
     setEditTitle(title);
@@ -100,7 +102,9 @@ export default function PageOne({ onNavigate }) {
       );
 
       setEvents((prevEvents) =>
-        prevEvents.map((event) => (event.id === id ? updatedEvent : event))
+        sortByDate(
+          prevEvents.map((event) => (event.id === id ? updatedEvent : event))
+        )
       );
       setEditingId(null);
       setEditTitle("");
@@ -128,7 +132,7 @@ export default function PageOne({ onNavigate }) {
     }
   };
 
-    if (isLoading) {
+  if (isLoading) {
     return (
       <div>
         <h1>Events</h1>
@@ -141,9 +145,7 @@ export default function PageOne({ onNavigate }) {
       <div>
         <h1>Events</h1>
         <p>Fehler: {error}</p>
-        <button onClick={() => window.location.reload()}>
-         Refresh
-        </button>
+        <button onClick={() => window.location.reload()}>Refresh</button>
       </div>
     );
   }
@@ -207,8 +209,8 @@ export default function PageOne({ onNavigate }) {
             <button className="add-button" onClick={() => saveEdit(editingId)}>
               Speichern
             </button>
-            <button 
-              className="delete-button" 
+            <button
+              className="delete-button"
               onClick={() => setEditingId(null)}
             >
               Abbrechen
@@ -224,7 +226,10 @@ export default function PageOne({ onNavigate }) {
         ) : (
           <ul className="events-list">
             {events.map((event) => (
-              <li key={event.id} className="event-item">
+              <li
+                key={event.id}
+                className={`event-item ${new Date(event.date) < new Date(new Date().toDateString()) ? "expired" : ""}`}
+              >
                 <div className="event-info">
                   <strong>{event.title}</strong>
                   <strong>{event.description}</strong>
@@ -233,7 +238,14 @@ export default function PageOne({ onNavigate }) {
                 <div className="event-buttons">
                   <button
                     className="edit-button"
-                    onClick={() => startEdit(event.id, event.title, event.description, event.date)}
+                    onClick={() =>
+                      startEdit(
+                        event.id,
+                        event.title,
+                        event.description,
+                        event.date
+                      )
+                    }
                   >
                     Bearbeiten
                   </button>
