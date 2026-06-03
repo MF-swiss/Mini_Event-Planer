@@ -15,13 +15,11 @@ export default function PageOne({ onNavigate }) {
   const [newEventTitle, setNewEventTitle] = useState("");
   const [newEventDescription, setNewEventDescription] = useState("");
   const [newEventDate, setNewEventDate] = useState("");
-  const [newEventDescription, setNewEventDescription] = useState("");
   const [newEventLocation, setNewEventLocation] = useState("");
   const [editingId, setEditingId] = useState(null);
   const [editTitle, setEditTitle] = useState("");
   const [editDescription, setEditDescription] = useState("");
   const [editDate, setEditDate] = useState("");
-  const [editDescription, setEditDescription] = useState("");
   const [editLocation, setEditLocation] = useState("");
     
   useEffect(() => {

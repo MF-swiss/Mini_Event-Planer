@@ -1,11 +1,11 @@
 {
   "events": [
     {
-      "id": "1",
       "title": "AC/DC",
-      "description": "AC/DC",
       "date": "2026-07-30",
-      "location": "ZH"
+      "description": "AC/DC",
+      "location": "ZH",
+      "id": "1"
     },
     {
       "id": "2",
