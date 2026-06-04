@@ -66,7 +66,6 @@ export default function Post({ eventId } = {}) {
 
   return (
     <article className="post" style={{ backgroundImage: `url(${imgSrc})` }}>
-      <h2>Nächstes Event</h2>
       <h1 className="post-title">{eventData.title || 'Nächstes Event'}</h1>
       <h2 className="post-date"><em>Findet statt am <strong>{dateStr}</strong></em></h2>
       {eventData.description && <h3 className="post-description">{eventData.description}</h3>}

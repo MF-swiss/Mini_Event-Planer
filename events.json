@@ -13,6 +13,13 @@
       "description": "Festival in Holland",
       "location": "Biddinghuizen",
       "id": "AM0q1LR1OzU"
+    },
+    {
+      "title": "Test",
+      "date": "2026-06-03",
+      "description": "",
+      "location": "",
+      "id": "Q7lgD2_uVRA"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
