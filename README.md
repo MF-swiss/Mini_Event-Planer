@@ -1,16 +1,50 @@
-# React + Vite
+# NovaSphere Event – Interaktive Webapplikation
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Diese Applikation ist ein kleiner **Event-Planer** auf Basis von **React + Vite**.
+Sie bietet eine Startseite mit dem nächsten Event sowie eine Verwaltungsseite, auf der Events geladen, erstellt, bearbeitet und gelöscht werden können.
 
-Currently, two official plugins are available:
+Die Daten werden über eine REST-API (lokal via `json-server`) aus `events.json` bereitgestellt.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- Anzeige des nächsten Events inkl. Countdown
+- Event-Verwaltung (CRUD: erstellen, lesen, bearbeiten, löschen)
+- Einfache Pflichtfeld-Validierung beim Erstellen/Bearbeiten
+- Nutzung von Umgebungsvariablen über `.env` (`VITE_API_URL`)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Voraussetzungen
 
-## Expanding the ESLint configuration
+- **Node.js** (empfohlen: aktuelle LTS-Version)
+- **npm** (wird mit Node.js installiert)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Installation
+
+1. Abhängigkeiten installieren:
+
+	`npm install`
+
+2. `.env` Datei im Projekt-Root erstellen (falls noch nicht vorhanden):
+
+	```env
+	VITE_API_URL=http://localhost:3001
+	```
+
+## Lokale Entwicklung starten
+
+Für die Entwicklung brauchst du **zwei laufende Prozesse**:
+
+1. API starten (json-server auf Port 3001):
+
+	`npm run api`
+
+2. Frontend starten (Vite Dev Server):
+
+	`npm run dev`
+
+Danach ist die App standardmässig unter der im Terminal angezeigten lokalen URL erreichbar (typisch `http://localhost:5173`).
+
+## Weitere nützliche Skripte
+
+- Build erstellen: `npm run build`
+- Build lokal previewen: `npm run preview`
+- Linting ausführen: `npm run lint`
