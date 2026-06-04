@@ -21,6 +21,8 @@ export default function PageOne({ onNavigate }) {
   const [editDescription, setEditDescription] = useState("");
   const [editDate, setEditDate] = useState("");
   const [editLocation, setEditLocation] = useState("");
+  const [showText, setShowText] = useState(true);
+  const [showTextEdit, setShowTextEdit] = useState(true);
     
   useEffect(() => {
     async function loadEvents() {
@@ -30,7 +32,7 @@ export default function PageOne({ onNavigate }) {
           throw new Error("ERROR! Die Events konnten nicht geladen werden!");
         }
         const data = await response.json();
-        setEvents(data.events || data);
+        setEvents(sortByDate(data.events || data));
       } catch (err) {
         setError(err.message);
       } finally {
@@ -39,7 +41,6 @@ export default function PageOne({ onNavigate }) {
     }
     loadEvents();
   }, []);
-
   const addEvent = async () => {
     // Validierung der Pflichtfelder
     if (!newEventTitle.trim() || !newEventDate) {
@@ -64,7 +65,7 @@ export default function PageOne({ onNavigate }) {
       });
       if (!response.ok) throw new Error("Fehler beim Hinzufügen!");
       const addedEvent = await response.json();
-      setEvents([...events, addedEvent]);
+      setEvents(sortByDate([...events, addedEvent]));
       setNewEventTitle("");
       setNewEventDate("");
       setNewEventDescription("");
@@ -73,7 +74,9 @@ export default function PageOne({ onNavigate }) {
       setError(err.message);
     }
   };
-
+  let textDissapear = () => {
+    setShowText(!showtext);
+  };
   const startEdit = (id, title, date, description, location) => {
     setEditingId(id);
     setEditTitle(title);
@@ -110,7 +113,7 @@ export default function PageOne({ onNavigate }) {
       const updatedEvents = events.map((event) => 
         event.id === id ? updatedEvent : event
       );
-      setEvents(updatedEvents);
+      setEvents(sortByDate(updatedEvents));
       setEditingId(null);
       setEditTitle("");
       setEditDate("");
@@ -146,19 +149,26 @@ export default function PageOne({ onNavigate }) {
       </div>
     );
   }
-
+                    //läd homepage, nicht pageone?
   if (error) {
     return (
       <div>
         <h1>Events</h1>
         <p>Fehler: {error}</p>
-        <button onClick={() => window.location.reload()}>
+        <button onClick={() => window.location.reload()}> 
           Refresh
         </button>
       </div>
     );
   }
-
+  const onButtonClick = () => {
+    setShowText(false);
+    addEvent();
+  };
+  const onButtonClickEdit = () => {
+    setShowTextEdit(false);
+    saveEdit(editingId);
+  };
   return (
     <div className="page-container">
       <section className="page-header">
@@ -194,7 +204,7 @@ export default function PageOne({ onNavigate }) {
             value={newEventLocation}
             onChange={(e) => setNewEventLocation(e.target.value)}
           />
-          <button className="add-button" onClick={addEvent}>
+          <button className="add-button" onClick={onButtonClick}>
             Hinzufügen
           </button>
           {validationError && (
@@ -202,6 +212,7 @@ export default function PageOne({ onNavigate }) {
               {validationError}
             </div>
           )}
+          {showText && <p>*Pflichtfelder beachten: Titel & Datum.</p>}
         </div>
       </section>
 
@@ -232,7 +243,7 @@ export default function PageOne({ onNavigate }) {
               value={editLocation}
               onChange={(e) => setEditLocation(e.target.value)}
             />
-            <button className="add-button" onClick={() => saveEdit(editingId)}>
+            <button className="add-button" onClick={() => { saveEdit(editingId); setShowTextEdit(false); }}>
               Speichern
             </button>
             <button
@@ -247,6 +258,7 @@ export default function PageOne({ onNavigate }) {
               </div>
             )}
           </div>
+          {showTextEdit && <div>Pflichtfelder beachten: Titel & Datum.</div>}
         </section>
       )}
 

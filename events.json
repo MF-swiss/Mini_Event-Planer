@@ -1,11 +1,18 @@
 {
   "events": [
     {
-      "id": "2",
-      "description": "Fasnacht",
+      "title": "Festival in Bern",
       "date": "2026-10-04",
+      "description": "Fasnacht",
       "location": "BE",
-      "title": "Festival in Bern"
+      "id": "2"
+    },
+    {
+      "title": "Defqon 1.",
+      "date": "2027-06-12",
+      "description": "Festival in Holland",
+      "location": "Biddinghuizen",
+      "id": "AM0q1LR1OzU"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
