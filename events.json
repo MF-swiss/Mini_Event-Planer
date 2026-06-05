@@ -21,6 +21,13 @@
       "location": "Axalp",
       "id": "Q7lgD2_uVRA"
     }
+        {
+      "title": "Kristallschiessen",
+      "date": "2026-08-29",
+      "description": "IPSC-Wettkampf stehen Präzision, Schnelligkeit und taktisches Geschick im Fokus.",
+      "location": "Axalp",
+      "id": "007"
+    }
   ],
   "$schema": "./node_modules/json-server/schema.json"
 }
