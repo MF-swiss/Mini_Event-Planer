@@ -80,7 +80,7 @@
 }
 
 .event-item:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 12px #00e1ff;
 }
 
 .event-info {
@@ -91,7 +91,7 @@
 
 .event-info strong {
   font-size: 16px;
-  color: #333;
+  color: #00e1ff;
 }
 
 .event-date {
