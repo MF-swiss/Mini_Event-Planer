@@ -29,7 +29,7 @@ describe('PageOne – Event-CRUD und Validierung', () => {
     const user = userEvent.setup();
     mockFetch
       .mockImplementationOnce(() => makeResponse({ events: [] }))
-      .mockImplementationOnce(() => makeResponse({ id: '1', title: 'Open Air', date: '2026-08-20', description: 'Sommer', location: 'Bern' }));
+      .mockImplementationOnce(() => makeResponse({ title: 'Open Air', date: '2026-08-20', description: 'Sommer', location: 'Bern' }));
 
     render(<PageOne onNavigate={vi.fn()} />);
 
