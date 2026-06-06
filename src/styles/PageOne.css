@@ -12,7 +12,9 @@
 .page-header h1 {
   margin: 0;
   font-size: 2rem;
-  color: #3D4166;
+  color: #9c9c9c;
+  margin: 10px 0 0 0;
+  text-shadow: 3px 3px #00e1ff52;
 }
 
 .add-event-section {
@@ -26,6 +28,7 @@
   margin: 0 0 20px 0;
   font-size: 1.3rem;
   color: #333;
+  
 }
 
 .form-group {
@@ -56,7 +59,7 @@
 .events-list-section h2 {
   margin: 0 0 20px 0;
   font-size: 1.3rem;
-  color: #3D4166;
+  color: #9c9c9c;
 }
 
 .events-list {
@@ -165,7 +168,7 @@
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease; /* box-shadow ergänzt */
   white-space: nowrap;
 }
 
@@ -185,13 +188,21 @@
   background-color: #2196F3;
   color: white;
 }
-.edit-button:hover { background-color: #0b7dda; }
+.edit-button:hover {
+  background-color: #0b7dda;
+  transform: translateY(-2px);
+  box-shadow: 0 0 14px 4px rgba(33, 150, 243, 0.6);
+}
 
 .delete-button {
   background-color: #f44336;
   color: white;
 }
-.delete-button:hover { background-color: #da190b; }
+.delete-button:hover {
+  background-color: #da190b;
+  transform: translateY(-2px);
+  box-shadow: 0 0 14px 4px rgba(244, 67, 54, 0.6);
+}
 
 .back-button {
   background-color: #666;
