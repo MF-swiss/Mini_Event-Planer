@@ -29,6 +29,7 @@ img {
   display: block;
   margin: 0 auto;
   margin-top: 20px;
+  box-shadow: 0 0 24px 6px rgba(0, 225, 255, 0.705);
 }
 
 
@@ -47,8 +48,9 @@ img {
 
 .hero-section h3 {
   font-size: 1.3rem;
-  color: #818181;
+  color: #9c9c9c;
   margin: 10px 0 0 0;
+  text-shadow: 3px 3px #00e1ff52;
 }
 
 .menu-section {
@@ -71,7 +73,7 @@ img {
   border-radius: 8px;
   border: 2px solid #00c3ff;
   background-color: #dde2e6;
-  color: #0183aa;
+  color: #027483;
   cursor: pointer;
   transition: all 0.3s ease;
   font-weight: 600;
@@ -80,9 +82,9 @@ img {
 .nav-button:hover,
 .back-button:hover,
 .add-button:hover {
-  background-color: #0066cc;
+  background-color: #027483;
   color: white;
-  box-shadow: 0 0 0 7px #0066ccb8;
+  box-shadow: 0 0 24px 6px rgba(0, 225, 255, 0.55);
   transform: translateY(-2px);
 }
 
