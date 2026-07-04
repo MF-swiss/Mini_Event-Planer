@@ -1,30 +1,30 @@
 [
-    {
-        "title": "SONIC 34 – GEN3R4TION RAVE",
-        "date": "2025-11-08",
-        "description": "Die SONIC Gen3ration Rave Edition bringt am 8. November 2025 die Technoszene in Wolfwil zum Beben...",
-        "locationId": 1,
-        "artistId": 6
-    },
-    {
-        "title": "Defqon 1.",
-        "date": "2027-06-12",
-        "description": "Festival in Holland",
-        "locationId": 2,
-        "artistId": 7
-    },
-    {
-        "title": "Fliegerschiessen AXALP",
-        "date": "2026-10-10",
-        "description": "Flugvorführungen der Schweizer Luftwaffe",
-        "locationId": 3,
-        "artistId": 8
-    },
-    {
-        "title": "Kristallschiessen",
-        "date": "2026-08-29",
-        "description": "IPSC-Wettkampf mit Fokus auf Präzision, Schnelligkeit und taktisches Geschick.",
-        "locationId": 4,
-        "artistId": 9
-    }
+  {
+    "title": "SONIC 34 – GEN3R4TION RAVE",
+    "date": "2025-11-08",
+    "description": "Die SONIC Gen3ration Rave Edition bringt am 8. November 2025 die Technoszene in Wolfwil zum Beben. Auf fünf Dancefloors treten internationale Top-Acts wie Astrix, Mauro Picotto, Ran-D, Deadly Guns & N-Vitral, Restricted, Gunz For Hire, Paolo Ferrara, Major Conspiracy, Luciid b2b Nachtsucht, D-Sturb, Outsiders, Korsakoff, Aversion, Dumonde aka JamX, Tha Playah, Devin Wild, Dasstudach und DJ Tatana auf. Der Event gilt seit Jahren als einer der wichtigsten elektronischen Anlässe der Schweiz und findet erneut im Industrieareal Bännli in Wolfwil statt. Dank perfekter Lage, ÖV-Anbindung, überdachten Bereichen und Shuttlebus ist die Location ideal für tausende Besucher. Aufgrund früherer Ausverkäufe wird der Vorverkauf empfohlen.",
+    "locationId": 1,
+    "artistId": 1
+  },
+  {
+    "title": "Defqon 1.",
+    "date": "2027-06-12",
+    "description": "Festival in Holland.",
+    "locationId": 2,
+    "artistId": 2
+  },
+  {
+    "title": "Fliegerschiessen AXALP",
+    "date": "2026-10-10",
+    "description": "Flugvorführungen der Schweizer Luftwaffe.",
+    "locationId": 3,
+    "artistId": 3
+  },
+  {
+    "title": "Kristallschiessen",
+    "date": "2026-08-29",
+    "description": "IPSC-Wettkampf mit Fokus auf Präzision, Schnelligkeit und taktisches Geschick.",
+    "locationId": 4,
+    "artistId": 4
+  }
 ]
