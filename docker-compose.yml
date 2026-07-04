@@ -1,16 +1,17 @@
 services:
+
   postgres:
     image: postgres:16
-    container_name: quiz-postgres
+    container_name: event-postgres
     restart: unless-stopped
     environment:
-      POSTGRES_USER: quizUser
-      POSTGRES_PASSWORD: quizPW
-      POSTGRES_DB: quizdb
+      POSTGRES_DB: eventdb
+      POSTGRES_USER: eventUser
+      POSTGRES_PASSWORD: eventPW
     ports:
-      - "5433:5432"
+      - "5432:5432"
     volumes:
-      - quiz-data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -d quizdb"]
       interval: 5s

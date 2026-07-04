@@ -1,28 +1,20 @@
-# --- Build Stage ---
-FROM eclipse-temurin:21-jdk AS build
+# 1. Build Stage (Maven + JDK)
+FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
 
-# Nur notwendige Dateien kopieren
-COPY mvnw .
-COPY .mvn .mvn
 COPY pom.xml .
+RUN mvn -q dependency:go-offline
 
-# Dependencies herunterladen (macht Build schneller)
-RUN ./mvnw dependency:go-offline
+COPY src ./src
 
-# Jetzt den Source Code kopieren
-COPY src src
+RUN mvn -q package -DskipTests
 
-# Build
-RUN ./mvnw clean package -DskipTests
-
-# --- Runtime Stage ---
-FROM eclipse-temurin:21-jre
+# 2. Run Stage (Lightweight JRE)
+FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 
-# Die erzeugte JAR kopieren
 COPY --from=build /app/target/*.jar app.jar
 
-EXPOSE 8080
+EXPOSE 8090
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
