@@ -28,7 +28,16 @@ public class EventService {
         return eventRepository.save(event);
     }
 
-    public void deleteEvent(Long id) {
+    // ⭐ KORREKTUR: deleteEvent liefert jetzt boolean statt void
+    public boolean deleteEvent(Long id) {
+
+        // Wenn das Event nicht existiert → 404 im Controller
+        if (!eventRepository.existsById(id)) {
+            return false;
+        }
+
+        // Wenn es existiert → löschen
         eventRepository.deleteById(id);
+        return true; // 204 No Content
     }
 }
