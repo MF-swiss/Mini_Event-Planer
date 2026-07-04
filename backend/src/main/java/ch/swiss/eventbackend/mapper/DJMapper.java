@@ -1,18 +1,30 @@
 package ch.swiss.eventbackend.mapper;
 
-import java.util.Map;
-
+import ch.swiss.eventbackend.dto.DJDTO;
 import ch.swiss.eventbackend.model.DJ;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DJMapper {
 
-    public static DJ fromJson(Map<String, Object> json) {
+    public DJDTO toDTO(DJ dj) {
+        return new DJDTO(
+                dj.getId(),
+                dj.getName(),
+                dj.getGenre(),
+                dj.getOrigin(),
+                dj.getExperience(),
+                dj.getDescription()
+        );
+    }
+
+    public DJ toEntity(DJDTO dto) {
         DJ dj = new DJ();
-        dj.setName((String) json.get("name"));
-        dj.setGenre((String) json.get("genre"));
-        dj.setOrigin((String) json.get("origin"));
-        dj.setExperience((String) json.get("experience"));
-        dj.setDescription((String) json.get("description"));
+        dj.setName(dto.name());
+        dj.setGenre(dto.genre());
+        dj.setOrigin(dto.origin());
+        dj.setExperience(dto.experience());
+        dj.setDescription(dto.description());
         return dj;
     }
 }

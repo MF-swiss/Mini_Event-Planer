@@ -1,8 +1,9 @@
 package ch.swiss.eventbackend.controller;
 
+import ch.swiss.eventbackend.dto.DJDTO;
+import ch.swiss.eventbackend.mapper.DJMapper;
 import ch.swiss.eventbackend.model.DJ;
 import ch.swiss.eventbackend.service.DJService;
-
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,24 +13,31 @@ import java.util.List;
 public class DJController {
 
     private final DJService djService;
+    private final DJMapper djMapper;
 
-    public DJController(DJService djService) {
+    public DJController(DJService djService, DJMapper djMapper) {
         this.djService = djService;
+        this.djMapper = djMapper;
     }
 
     @GetMapping
-    public List<DJ> getAllDJs() {
-        return djService.getAllDJs();
+    public List<DJDTO> getAllDJs() {
+        return djService.getAllDJs()
+                .stream()
+                .map(djMapper::toDTO)
+                .toList();
     }
 
     @GetMapping("/{id}")
-    public DJ getDJById(@PathVariable Long id) {
-        return djService.getDJById(id);
+    public DJDTO getDJById(@PathVariable Long id) {
+        return djMapper.toDTO(djService.getDJById(id));
     }
 
     @PostMapping
-    public DJ createDJ(@RequestBody DJ dj) {
-        return djService.saveDJ(dj);
+    public DJDTO createDJ(@RequestBody DJDTO dto) {
+        DJ dj = djMapper.toEntity(dto);
+        DJ saved = djService.saveDJ(dj);
+        return djMapper.toDTO(saved);
     }
 
     @DeleteMapping("/{id}")

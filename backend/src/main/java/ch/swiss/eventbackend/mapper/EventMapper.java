@@ -1,19 +1,30 @@
 package ch.swiss.eventbackend.mapper;
 
-import java.time.LocalDate;
-import java.util.Map;
-
-import ch.swiss.eventbackend.model.DJ;
+import ch.swiss.eventbackend.dto.EventDTO;
 import ch.swiss.eventbackend.model.Event;
 import ch.swiss.eventbackend.model.Location;
+import ch.swiss.eventbackend.model.DJ;
+import org.springframework.stereotype.Component;
 
+@Component
 public class EventMapper {
 
-    public static Event fromJson(Map<String, Object> json, Location location, DJ dj) {
+    public EventDTO toDTO(Event event) {
+        return new EventDTO(
+                event.getId(),
+                event.getTitle(),
+                event.getDate(),
+                event.getDescription(),
+                event.getLocation() != null ? event.getLocation().getId() : null,
+                event.getDj() != null ? event.getDj().getId() : null
+        );
+    }
+
+    public Event toEntity(EventDTO dto, Location location, DJ dj) {
         Event event = new Event();
-        event.setTitle((String) json.get("title"));
-        event.setDescription((String) json.get("description"));
-        event.setDate(LocalDate.parse((String) json.get("date")));
+        event.setTitle(dto.title());
+        event.setDate(dto.date());
+        event.setDescription(dto.description());
         event.setLocation(location);
         event.setDj(dj);
         return event;
