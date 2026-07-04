@@ -1,5 +1,7 @@
 package main.java.repository;
 
-public class DJRepository {
-    
+import main.java.model.DJ;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface DJRepository extends JpaRepository<DJ, Long> {
 }
