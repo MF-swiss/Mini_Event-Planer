@@ -1,9 +1,9 @@
 package ch.swiss.eventbackend.seeder;
 
-import ch.swiss.eventbackend.model.DJ;
+import ch.swiss.eventbackend.model.Artist;
 import ch.swiss.eventbackend.model.Event;
 import ch.swiss.eventbackend.model.Location;
-import ch.swiss.eventbackend.repository.DJRepository;
+import ch.swiss.eventbackend.repository.ArtistRepository;
 import ch.swiss.eventbackend.repository.EventRepository;
 import ch.swiss.eventbackend.repository.LocationRepository;
 
@@ -22,14 +22,14 @@ public class Seeder implements CommandLineRunner {
 
     private final EventRepository eventRepository;
     private final LocationRepository locationRepository;
-    private final DJRepository djRepository;
+    private final ArtistRepository artistRepository;
 
     public Seeder(EventRepository eventRepository,
                   LocationRepository locationRepository,
-                  DJRepository djRepository) {
+                  ArtistRepository artistRepository) {
         this.eventRepository = eventRepository;
         this.locationRepository = locationRepository;
-        this.djRepository = djRepository;
+        this.artistRepository = artistRepository;
     }
 
     @Override
@@ -38,12 +38,12 @@ public class Seeder implements CommandLineRunner {
         ObjectMapper mapper = new ObjectMapper();
 
         // -----------------------------
-        // DJs laden
+        // Artists laden
         // -----------------------------
-        InputStream djStream = getClass().getResourceAsStream("/djs.json");
-        List<Map<String, Object>> djJson = mapper.readValue(djStream, new TypeReference<>() {});
-        List<DJ> djs = djJson.stream().map(this::djFromJson).toList();
-        djRepository.saveAll(djs);
+        InputStream artistStream = getClass().getResourceAsStream("/artists.json");
+        List<Map<String, Object>> artistJson = mapper.readValue(artistStream, new TypeReference<>() {});
+        List<Artist> artists = artistJson.stream().map(this::artistFromJson).toList();
+        artistRepository.saveAll(artists);
 
         // -----------------------------
         // Locations laden
@@ -69,15 +69,15 @@ public class Seeder implements CommandLineRunner {
                     .findFirst()
                     .orElse(null);
 
-            // DJ anhand Name finden
-            String djName = (String) json.get("dj");
-            DJ dj = djRepository.findAll()
+                // Artist anhand Name finden
+                String artistName = (String) json.get("artist");
+                Artist artist = artistRepository.findAll()
                     .stream()
-                    .filter(d -> d.getName().equalsIgnoreCase(djName))
+                    .filter(a -> a.getName().equalsIgnoreCase(artistName))
                     .findFirst()
                     .orElse(null);
 
-            Event event = eventFromJson(json, location, dj);
+                Event event = eventFromJson(json, location, artist);
             eventRepository.save(event);
         }
     }
@@ -86,14 +86,14 @@ public class Seeder implements CommandLineRunner {
     // JSON → Entity Mapper
     // -----------------------------
 
-    private DJ djFromJson(Map<String, Object> json) {
-        DJ dj = new DJ();
-        dj.setName((String) json.get("name"));
-        dj.setGenre((String) json.get("genre"));
-        dj.setOrigin((String) json.get("origin"));
-        dj.setExperience((String) json.get("experience"));
-        dj.setDescription((String) json.get("description"));
-        return dj;
+    private Artist artistFromJson(Map<String, Object> json) {
+        Artist artist = new Artist();
+        artist.setName((String) json.get("name"));
+        artist.setGenre((String) json.get("genre"));
+        artist.setOrigin((String) json.get("origin"));
+        artist.setExperience((String) json.get("experience"));
+        artist.setDescription((String) json.get("description"));
+        return artist;
     }
 
     private Location locationFromJson(Map<String, Object> json) {
@@ -107,13 +107,13 @@ public class Seeder implements CommandLineRunner {
         return location;
     }
 
-    private Event eventFromJson(Map<String, Object> json, Location location, DJ dj) {
+    private Event eventFromJson(Map<String, Object> json, Location location, Artist artist) {
         Event event = new Event();
         event.setTitle((String) json.get("title"));
         event.setDescription((String) json.get("description"));
         event.setDate(LocalDate.parse((String) json.get("date")));
         event.setLocation(location);
-        event.setDj(dj);
+        event.setArtist(artist);
         return event;
     }
 }

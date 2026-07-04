@@ -3,7 +3,7 @@ package ch.swiss.eventbackend.mapper;
 import ch.swiss.eventbackend.dto.EventDTO;
 import ch.swiss.eventbackend.model.Event;
 import ch.swiss.eventbackend.model.Location;
-import ch.swiss.eventbackend.model.DJ;
+import ch.swiss.eventbackend.model.Artist;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,17 +16,17 @@ public class EventMapper {
                 event.getDate(),
                 event.getDescription(),
                 event.getLocation() != null ? event.getLocation().getId() : null,
-                event.getDj() != null ? event.getDj().getId() : null
+                event.getArtist() != null ? event.getArtist().getId() : null
         );
     }
 
-    public Event toEntity(EventDTO dto, Location location, DJ dj) {
+    public Event toEntity(EventDTO dto, Location location, Artist artist) {
         Event event = new Event();
         event.setTitle(dto.title());
         event.setDate(dto.date());
         event.setDescription(dto.description());
         event.setLocation(location);
-        event.setDj(dj);
+        event.setArtist(artist);
         return event;
     }
 }

@@ -4,10 +4,10 @@ import ch.swiss.eventbackend.dto.EventDTO;
 import ch.swiss.eventbackend.mapper.EventMapper;
 import ch.swiss.eventbackend.model.Event;
 import ch.swiss.eventbackend.model.Location;
-import ch.swiss.eventbackend.model.DJ;
+import ch.swiss.eventbackend.model.Artist;
 import ch.swiss.eventbackend.service.EventService;
 import ch.swiss.eventbackend.service.LocationService;
-import ch.swiss.eventbackend.service.DJService;
+import ch.swiss.eventbackend.service.ArtistService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,14 +18,14 @@ public class EventController {
 
     private final EventService eventService;
     private final LocationService locationService;
-    private final DJService djService;
+    private final ArtistService artistService;
     private final EventMapper eventMapper;
 
     public EventController(EventService eventService, LocationService locationService,
-                           DJService djService, EventMapper eventMapper) {
+                           ArtistService artistService, EventMapper eventMapper) {
         this.eventService = eventService;
         this.locationService = locationService;
-        this.djService = djService;
+        this.artistService = artistService;
         this.eventMapper = eventMapper;
     }
 
@@ -46,9 +46,9 @@ public class EventController {
     public EventDTO createEvent(@RequestBody EventDTO dto) {
 
         Location location = locationService.getLocationById(dto.locationId());
-        DJ dj = djService.getDJById(dto.djId());
+        Artist artist = artistService.getArtistById(dto.artistId());
 
-        Event event = eventMapper.toEntity(dto, location, dj);
+        Event event = eventMapper.toEntity(dto, location, artist);
         Event saved = eventService.saveEvent(event);
 
         return eventMapper.toDTO(saved);

@@ -8,5 +8,5 @@ public record EventDTO(
         LocalDate date,
         String description,
         Long locationId,
-        Long djId
+        Long artistId
 ) {}

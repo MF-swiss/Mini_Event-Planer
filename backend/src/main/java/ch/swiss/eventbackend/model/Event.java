@@ -24,20 +24,20 @@ public class Event {
     private Location location;
 
     @ManyToOne
-    @JoinColumn(name = "dj_id")
-    private DJ dj;
+    @JoinColumn(name = "artist_id")
+    private Artist artist;
 
     // --- Konstruktoren ---
 
     public Event() {
     }
 
-    public Event(String title, LocalDate date, String description, Location location, DJ dj) {
+    public Event(String title, LocalDate date, String description, Location location, Artist artist) {
         this.title = title;
         this.date = date;
         this.description = description;
         this.location = location;
-        this.dj = dj;
+        this.artist = artist;
     }
 
     // --- Getter & Setter ---
@@ -82,11 +82,11 @@ public class Event {
         this.location = location;
     }
 
-    public DJ getDj() {
-        return dj;
+    public Artist getArtist() {
+        return artist;
     }
 
-    public void setDj(DJ dj) {
-        this.dj = dj;
+    public void setArtist(Artist artist) {
+        this.artist = artist;
     }
 }

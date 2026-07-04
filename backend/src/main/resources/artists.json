@@ -1,0 +1,42 @@
+[ 
+    {
+        "id": "1",
+        "name": "Artist Nova",
+        "genre": "Techno / Melodic Techno",
+        "origin": "Zürich, Schweiz",
+        "experience": "10 Jahre",
+        "description": "Bekannt für atmosphärische Sets und futuristische Sounds."
+    },
+    {
+        "id": "2",
+        "name": "BassRider",
+        "genre": "Hardstyle / Rawstyle",
+        "origin": "Arnhem, Niederlande",
+        "experience": "7 Jahre",
+        "description": "Spielt auf grossen Hardstyle-Festivals wie Defqon und Decibel."
+    },
+    {
+        "id": "3",
+        "name": "LunaWave",
+        "genre": "House / Deep House",
+        "origin": "Luzern, Schweiz",
+        "experience": "5 Jahre",
+        "description": "Perfekt für entspannte Daydance-Events."
+    },
+    {
+        "id": "4",
+        "name": "Skyline",
+        "genre": "Drum & Bass / Liquid",
+        "origin": "London, UK",
+        "experience": "12 Jahre",
+        "description": "Spezialisiert auf schnelle, energiegeladene Sets."
+    },
+    {
+        "id": "5",
+        "name": "ElectroFox",
+        "genre": "EDM / Big Room",
+        "origin": "Berlin, Deutschland",
+        "experience": "8 Jahre",
+        "description": "Bringt Festivalstimmung mit kraftvollen Drops."
+    }
+]
