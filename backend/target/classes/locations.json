@@ -1,0 +1,47 @@
+[
+    {
+        "id": "1",
+        "name": "Bärenplatz",
+        "city": "Bern",
+        "country": "Schweiz",
+        "type": "Outdoor",
+        "capacity": 5000,
+        "description": "Zentraler Platz in Bern, ideal für grosse Open-Air-Events."
+    },
+    {
+        "id": "2",
+        "name": "Hallenstadion",
+        "city": "Zürich",
+        "country": "Schweiz",
+        "type": "Indoor",
+        "capacity": 15000,
+        "description": "Grösste Eventhalle der Schweiz, geeignet für Konzerte und Sportevents."
+    },
+    {
+        "id": "3",
+        "name": "Gurtenpark",
+        "city": "Bern",
+        "country": "Schweiz",
+        "type": "Outdoor",
+        "capacity": 20000,
+        "description": "Festivalgelände auf dem Berner Hausberg."
+    },
+    {
+        "id": "4",
+        "name": "AFAS Live",
+        "city": "Amsterdam",
+        "country": "Niederlande",
+        "type": "Indoor",
+        "capacity": 6000,
+        "description": "Moderne Konzerthalle mit Top-Akustik."
+    },
+    {
+        "id": "5",
+        "name": "Schiessplatz Gnappiried",
+        "city": "Stans",
+        "country": "Schweiz",
+        "type": "Outdoor",
+        "capacity": 2000,
+        "description": "Gelände für Schiesssport-Events und taktische Wettkämpfe."
+    }
+]
