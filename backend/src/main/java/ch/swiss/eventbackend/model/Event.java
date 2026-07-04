@@ -15,6 +15,8 @@ public class Event {
 
     private LocalDate date;
 
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     // --- Beziehungen ---
