@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
 
   postgres:
@@ -11,39 +13,38 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - event-data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -d quizdb"]
+      test: ["CMD-SHELL", "pg_isready -d eventdb"]
       interval: 5s
       timeout: 5s
       retries: 10
-
-
 
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: quiz-backend
+    container_name: event-backend
     depends_on:
       postgres:
         condition: service_healthy
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/quizdb
-      SPRING_DATASOURCE_USERNAME: quizUser
-      SPRING_DATASOURCE_PASSWORD: quizPW
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/eventdb
+      SPRING_DATASOURCE_USERNAME: eventUser
+      SPRING_DATASOURCE_PASSWORD: eventPW
+      SPRING_PROFILES_ACTIVE: prod
     ports:
-      - "8080:8080"
+      - "8090:8090"
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: quiz-frontend
+    container_name: event-frontend
     depends_on:
       - backend
     ports:
       - "5173:5173"
 
 volumes:
-  quiz-data:
+  event-data:

@@ -14,6 +14,7 @@
     <name>Event Backend</name>
     <description>Mini Event Planner Backend</description>
 
+    <!-- Spring Boot Parent: verwaltet Versionen automatisch -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -22,6 +23,7 @@
     </parent>
 
     <properties>
+        <!-- Java Version für Spring Boot 3 -->
         <java.version>17</java.version>
     </properties>
 
@@ -39,11 +41,18 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <!-- H2 Database (In-Memory) -->
+        <!-- H2 Database (nur für Entwicklung, Profil "dev") -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
+        </dependency>
+
+        <!-- PostgreSQL JDBC Driver (für Produktion, Profil "prod") -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.7.3</version>
         </dependency>
 
         <!-- JSON Mapper (Jackson) -->
@@ -63,6 +72,7 @@
 
     <build>
         <plugins>
+            <!-- Spring Boot Build Plugin -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
