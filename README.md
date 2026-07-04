@@ -1,10 +1,12 @@
-📘 Mini Event‑Planer – Backend (Spring Boot)
+# 📘 Mini Event‑Planer – Backend (Spring Boot)
+
 Dies ist das Backend des Mini Event‑Planers, entwickelt im Rahmen des Moduls M295.
 Das Projekt stellt eine vollständige REST‑API zur Verwaltung von Events, Locations und Artists bereit.
 
 Das Backend basiert auf Spring Boot 3, nutzt DTO‑Mapping, Services, Repositories und ist vollständig mit Integrationstests abgesichert.
 
-🚀 Features (Backend)
+## 🚀 Features (Backend)
+
 ✔ Events verwalten
 * Event erstellen
 * Event abrufen
@@ -32,7 +34,7 @@ Das Backend basiert auf Spring Boot 3, nutzt DTO‑Mapping, Services, Repositori
 
 Fehlerfälle (404, 400)
 
-🧪 Tests
+## 🧪 Tests
 Das Backend enthält vollständige Integrationstests mit MockMvc:
 
 |         Test        |              Datei             |        Zweck         |
@@ -45,7 +47,7 @@ Das Backend enthält vollständige Integrationstests mit MockMvc:
 
 Alle Tests laufen grün und erfüllen die LB‑Vorgaben.
 
-🏗 Architektur
+## 🏗 Architektur
 📂 Backend‑Struktur
 Code
 backend/
@@ -56,7 +58,8 @@ backend/
       ├── model/           → Entities
       ├── dto/             → API‑Modelle
       └── mapper/          → DTO‑Mapping
-🐳 Docker
+
+## 🐳 Docker
 Das Backend kann vollständig über Docker gestartet werden.
 
 Beispiel:
@@ -67,7 +70,7 @@ Services:
 * event-backend (Spring Boot)
 * PostgreSQL Datenbank
 
-🔌 API‑Endpoints (Auszug)
+## 🔌 API‑Endpoints (Auszug)
 Events
 | Methode | Endpoint     | Beschreibung            |
 | ------- | ------------ | ----------------------- |
@@ -77,7 +80,7 @@ Events
 | DELETE  | /events/{id} | Event löschen           |
 
 
-🎨 Frontend
+## 🎨 Frontend
 Das Frontend wird später ergänzt.
 *****************************
 *****************************
@@ -89,10 +92,10 @@ Das Frontend wird später ergänzt.
 
 
 
-📄 Lizenz
+## 📄 Lizenz
 Dieses Projekt wurde im Rahmen der Ausbildung an der WISS Schulen für Wirtschaft Informatik Immobilien AG erstellt.
 
-👤 Autor
+## 👤 Autor
 Marco Fritsche & Luca Caputi
 Aspiring Application Developer
 Schweiz
