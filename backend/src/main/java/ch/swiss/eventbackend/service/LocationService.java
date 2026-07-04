@@ -1,7 +1,7 @@
-package main.java.ch.swiss.eventbackend.service;
+package ch.swiss.eventbackend.service;
 
-import main.java.ch.swiss.eventbackend.model.Location;
-import main.java.ch.swiss.eventbackend.repository.LocationRepository;
+import ch.swiss.eventbackend.model.Location;
+import ch.swiss.eventbackend.repository.LocationRepository;
 
 import org.springframework.stereotype.Service;
 
