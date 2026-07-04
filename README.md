@@ -1,50 +1,98 @@
-# NovaSphere Event – Interaktive Webapplikation
+📘 Mini Event‑Planer – Backend (Spring Boot)
+Dies ist das Backend des Mini Event‑Planers, entwickelt im Rahmen des Moduls M295.
+Das Projekt stellt eine vollständige REST‑API zur Verwaltung von Events, Locations und Artists bereit.
 
-Diese Applikation ist ein kleiner **Event-Planer** auf Basis von **React + Vite**.
-Sie bietet eine Startseite mit dem nächsten Event sowie eine Verwaltungsseite, auf der Events geladen, erstellt, bearbeitet und gelöscht werden können.
+Das Backend basiert auf Spring Boot 3, nutzt DTO‑Mapping, Services, Repositories und ist vollständig mit Integrationstests abgesichert.
 
-Die Daten werden über eine REST-API (lokal via `json-server`) aus `events.json` bereitgestellt.
+🚀 Features (Backend)
+✔ Events verwalten
+* Event erstellen
+* Event abrufen
+* Event löschen
+* Fehlerfälle (404 / 400) sauber implementiert
+* REST‑konforme Statuscodes (201, 200, 204, 404, 400)
 
-## Features
+✔ DTO‑Mapping
+* Klare Trennung zwischen Entity und API‑Modell
+* EventMapper für saubere Konvertierung
 
-- Anzeige des nächsten Events inkl. Countdown
-- Event-Verwaltung (CRUD: erstellen, lesen, bearbeiten, löschen)
-- Einfache Pflichtfeld-Validierung beim Erstellen/Bearbeiten
-- Nutzung von Umgebungsvariablen über `.env` (`VITE_API_URL`)
+✔ Services
+* Business‑Logik ausgelagert
+* Validierung und Fehlerbehandlung im Service
 
-## Voraussetzungen
+✔ Repository
+* Spring Data JPA
+* H2‑InMemory‑DB für Tests
+* PostgreSQL für Docker‑Deployment
 
-- **Node.js** (empfohlen: aktuelle LTS-Version)
-- **npm** (wird mit Node.js installiert)
+✔ Integrationstests
+* GET /events
+* POST /events
+* DELETE /events/{id}
 
-## Installation
+Fehlerfälle (404, 400)
 
-1. Abhängigkeiten installieren:
+🧪 Tests
+Das Backend enthält vollständige Integrationstests mit MockMvc:
 
-	`npm install`
+|         Test        |              Datei             |        Zweck         |
+| ------------------- | ------------------------------ | -------------------- |
+| GET /events         | EventControllerIntegrationTest | Liste abrufen        |
+| POST /events        | EventPostIntegrationTest       | Event erstellen      |
+| Fehlerfälle         | EventErrorIntegrationTest      | 404 & 400 testen     |
+| DELETE /events/{id} | EventDeleteIntegrationTest     | Löschen & Fehlerfall |
 
-2. `.env` Datei im Projekt-Root erstellen (falls noch nicht vorhanden):
 
-	```env
-	VITE_API_URL=http://localhost:3001
-	```
+Alle Tests laufen grün und erfüllen die LB‑Vorgaben.
 
-## Lokale Entwicklung starten
+🏗 Architektur
+📂 Backend‑Struktur
+Code
+backend/
+ └── src/main/java/ch/swiss/eventbackend/
+      ├── controller/      → REST‑API
+      ├── service/         → Business‑Logik
+      ├── repository/      → Datenbankzugriff
+      ├── model/           → Entities
+      ├── dto/             → API‑Modelle
+      └── mapper/          → DTO‑Mapping
+🐳 Docker
+Das Backend kann vollständig über Docker gestartet werden.
 
-Für die Entwicklung brauchst du **zwei laufende Prozesse**:
+Beispiel:
+Code
+docker compose up -d --build
 
-1. API starten (json-server auf Port 3001):
+Services:
+* event-backend (Spring Boot)
+* PostgreSQL Datenbank
 
-	`npm run api`
+🔌 API‑Endpoints (Auszug)
+Events
+| Methode | Endpoint     | Beschreibung            |
+| ------- | ------------ | ----------------------- |
+| GET     | /events      | Alle Events abrufen     |
+| GET     | /events/{id} | Einzelnes Event abrufen |
+| POST    | /events      | Neues Event erstellen   |
+| DELETE  | /events/{id} | Event löschen           |
 
-2. Frontend starten (Vite Dev Server):
 
-	`npm run dev`
+🎨 Frontend
+Das Frontend wird später ergänzt.
+*****************************
+*****************************
+*****************************
+*****************************
+*****************************
 
-Danach ist die App standardmässig unter der im Terminal angezeigten lokalen URL erreichbar (typisch `http://localhost:5173`).
+(Platzhalter für zukünftige Beschreibung)
 
-## Weitere nützliche Skripte
 
-- Build erstellen: `npm run build`
-- Build lokal previewen: `npm run preview`
-- Linting ausführen: `npm run lint`
+
+📄 Lizenz
+Dieses Projekt wurde im Rahmen der Ausbildung an der WISS Schulen für Wirtschaft Informatik Immobilien AG erstellt.
+
+👤 Autor
+Marco Fritsche & Luca Caputi
+Aspiring Application Developer
+Schweiz
