@@ -1,6 +1,6 @@
 [
     {
-        "id": "loc_001",
+        "id": "1",
         "name": "Bärenplatz",
         "city": "Bern",
         "country": "Schweiz",
@@ -9,7 +9,7 @@
         "description": "Zentraler Platz in Bern, ideal für grosse Open-Air-Events."
     },
     {
-        "id": "loc_002",
+        "id": "2",
         "name": "Hallenstadion",
         "city": "Zürich",
         "country": "Schweiz",
@@ -18,7 +18,7 @@
         "description": "Grösste Eventhalle der Schweiz, geeignet für Konzerte und Sportevents."
     },
     {
-        "id": "loc_003",
+        "id": "3",
         "name": "Gurtenpark",
         "city": "Bern",
         "country": "Schweiz",
@@ -27,7 +27,7 @@
         "description": "Festivalgelände auf dem Berner Hausberg."
     },
     {
-        "id": "loc_004",
+        "id": "4",
         "name": "AFAS Live",
         "city": "Amsterdam",
         "country": "Niederlande",
@@ -36,7 +36,7 @@
         "description": "Moderne Konzerthalle mit Top-Akustik."
     },
     {
-        "id": "loc_005",
+        "id": "5",
         "name": "Schiessplatz Gnappiried",
         "city": "Stans",
         "country": "Schweiz",
