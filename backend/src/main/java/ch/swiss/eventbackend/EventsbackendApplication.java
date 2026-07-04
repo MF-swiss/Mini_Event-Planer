@@ -1,4 +1,4 @@
-package main.java;
+package ch.swiss.eventbackend;
 
 public class EventsbackendApplication {
     

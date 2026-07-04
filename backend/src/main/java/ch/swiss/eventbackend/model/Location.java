@@ -1,4 +1,4 @@
-package main.java.model;
+package ch.swiss.eventbackend.model;
 
 import jakarta.persistence.*;
 import java.util.List;

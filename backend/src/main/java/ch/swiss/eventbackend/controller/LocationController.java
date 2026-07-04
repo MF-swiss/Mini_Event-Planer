@@ -1,7 +1,8 @@
-package main.java.controller;
+package ch.swiss.eventbackend.controller;
 
-import main.java.model.Location;
-import main.java.service.LocationService;
+import ch.swiss.eventbackend.model.Location;
+import ch.swiss.eventbackend.service.LocationService;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -1,7 +1,8 @@
-package main.java.controller;
+package ch.swiss.eventbackend.controller;
 
-import main.java.model.DJ;
-import main.java.service.DJService;
+import ch.swiss.eventbackend.model.DJ;
+import ch.swiss.eventbackend.service.DJService;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -1,7 +1,8 @@
-package main.java.service;
+package main.java.ch.swiss.eventbackend.service;
 
-import main.java.model.Event;
-import main.java.repository.EventRepository;
+import main.java.ch.swiss.eventbackend.model.Event;
+import main.java.ch.swiss.eventbackend.repository.EventRepository;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
