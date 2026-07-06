@@ -10,15 +10,6 @@ export default function HomePage({ onNavigate }) {
         <img src={logo} alt="Logo" />
       </section>
 
-      <section className="menu-section">
-        <button
-          className="nav-button"
-          onClick={() => onNavigate('pageone')}
-        >
-          Events Verwalten
-        </button>
-      </section>
-
       <section className="post">
         <h1>Nächstes Event</h1>
         <Post />
