@@ -11,7 +11,7 @@ services:
       POSTGRES_USER: eventUser
       POSTGRES_PASSWORD: eventPW
     ports:
-      - "5432:5432"
+      - "5433:5432"   # <— hier ändern!
     volumes:
       - event-data:/var/lib/postgresql/data
     healthcheck:
@@ -19,6 +19,7 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+
 
   backend:
     build:
@@ -45,6 +46,8 @@ services:
       - backend
     ports:
       - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:8090
 
 volumes:
   event-data:

@@ -13,7 +13,7 @@ function makeResponse(body, ok = true) {
 }
 
 beforeEach(() => {
-  vi.stubEnv('VITE_API_URL', 'http://localhost:3001');
+  vi.stubEnv('VITE_API_URL', 'http://localhost:8090');
   vi.stubGlobal('fetch', mockFetch);
   vi.stubGlobal('confirm', vi.fn(() => true));
 });

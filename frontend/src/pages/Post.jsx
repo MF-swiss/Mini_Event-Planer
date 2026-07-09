@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Countdown from '../components/Countdown';
 import '../styles/Post.css'
 
-const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:8090';
 
 
 
