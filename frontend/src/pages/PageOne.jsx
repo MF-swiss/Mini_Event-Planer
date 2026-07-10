@@ -238,8 +238,13 @@ export default function PageOne({ onNavigate }) {
 
   // EventDTO liefert nur locationId/artistId, keine verschachtelten Objekte -
   // daher hier per id in den bereits geladenen Arrays nachschlagen.
-  const getLocationById = (id) => locations.find((loc) => loc.id === id);
-  const getArtistById = (id) => artists.find((artist) => artist.id === id);
+  // Number(...) auf beiden Seiten, da locationId/artistId je nach
+  // Response-Pfad als String oder Number ankommen kann - sonst matched
+  // die strikte Gleichheit nicht und die Karte bleibt leer.
+  const getLocationById = (id) =>
+    locations.find((loc) => Number(loc.id) === Number(id));
+  const getArtistById = (id) =>
+    artists.find((artist) => Number(artist.id) === Number(id));
 
   if (isLoading) {
     return (
@@ -392,11 +397,11 @@ export default function PageOne({ onNavigate }) {
               <option value={NEW_OPTION_VALUE}>+ Neuen Artist erstellen</option>
             </select>
 
-            <button className="add-button" onClick={() => saveEdit(editingId)}>
+            <button className="edit-button" onClick={() => saveEdit(editingId)}>
               Speichern
             </button>
 
-            <button className="delete-button" onClick={() => resetEditForm()}>
+            <button className="back-button" onClick={() => resetEditForm()}>
               Abbrechen
             </button>
 
@@ -436,20 +441,26 @@ export default function PageOne({ onNavigate }) {
 
                     <span className="event-date">{event.date}</span>
 
+                    {/* Immer alle drei Zeilen rendern, mit "–" als Fallback,
+                        damit jede Karte gleich aufgebaut ist, egal ob
+                        Location/Artist-Daten (noch) fehlen. */}
                     <div className="event-location">
-                      <strong>Location:</strong> {location?.name}
+                      <strong>Location:</strong>{" "}
+                      {location ? `${location.name}, ${location.city}` : "–"}
                       <br />
-                      {location?.city}, {location?.country}
+                      {location?.country || "–"}
                       <br />
-                      {location?.type} – Kapazität: {location?.capacity}
+                      {location
+                        ? `${location.type ?? "–"} – Kapazität: ${location.capacity ?? "–"}`
+                        : "Kapazität: –"}
                     </div>
 
                     <div className="event-artist">
-                      <strong>Artist:</strong> {artist?.name}
+                      <strong>Artist:</strong> {artist?.name || "–"}
                       <br />
-                      Genre: {artist?.genre}
+                      Genre: {artist?.genre || "–"}
                       <br />
-                      Herkunft: {artist?.origin}
+                      Herkunft: {artist?.origin || "–"}
                     </div>
                   </div>
 

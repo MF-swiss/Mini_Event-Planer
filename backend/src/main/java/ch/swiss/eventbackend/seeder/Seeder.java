@@ -9,6 +9,8 @@ import ch.swiss.eventbackend.repository.LocationRepository;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +21,8 @@ import java.util.Map;
 
 @Component
 public class Seeder implements CommandLineRunner {
+
+    private static final Logger log = LoggerFactory.getLogger(Seeder.class);
 
     private final EventRepository eventRepository;
     private final LocationRepository locationRepository;
@@ -34,6 +38,15 @@ public class Seeder implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
+        // Nur seeden, wenn die DB noch leer ist - sonst würde bei jedem
+        // Neustart alles erneut eingefügt (Duplikate) und man müsste
+        // ständig das Volume löschen, was auch manuell erstellte Events
+        // mit wegreissen würde.
+        if (eventRepository.count() > 0 || locationRepository.count() > 0 || artistRepository.count() > 0) {
+            log.info("Seeder: Datenbank enthält bereits Daten - Seeding wird übersprungen.");
+            return;
+        }
 
         ObjectMapper mapper = new ObjectMapper();
 
@@ -59,27 +72,44 @@ public class Seeder implements CommandLineRunner {
         InputStream eventStream = getClass().getResourceAsStream("/events.json");
         List<Map<String, Object>> eventJson = mapper.readValue(eventStream, new TypeReference<>() {});
 
+        // events.json referenziert Location/Artist direkt per ID
+        // (locationId / artistId), nicht per Name - daher hier per
+        // Repository-Lookup auflösen statt per Namens-Matching.
         for (Map<String, Object> json : eventJson) {
 
-            // Location anhand Name finden
-            String locationName = (String) json.get("location");
-            Location location = locationRepository.findAll()
-                    .stream()
-                    .filter(l -> l.getName().equalsIgnoreCase(locationName))
-                    .findFirst()
-                    .orElse(null);
+            String eventTitle = (String) json.get("title");
 
-                // Artist anhand Name finden
-                String artistName = (String) json.get("artist");
-                Artist artist = artistRepository.findAll()
-                    .stream()
-                    .filter(a -> a.getName().equalsIgnoreCase(artistName))
-                    .findFirst()
-                    .orElse(null);
+            Long locationId = toLong(json.get("locationId"));
+            Location location = locationId != null
+                    ? locationRepository.findById(locationId).orElse(null)
+                    : null;
 
-                Event event = eventFromJson(json, location, artist);
+            if (location == null) {
+                log.warn("Seeder: Keine Location gefunden für Event '{}' (locationId: {})",
+                        eventTitle, locationId);
+            }
+
+            Long artistId = toLong(json.get("artistId"));
+            Artist artist = artistId != null
+                    ? artistRepository.findById(artistId).orElse(null)
+                    : null;
+
+            if (artist == null) {
+                log.warn("Seeder: Kein Artist gefunden für Event '{}' (artistId: {})",
+                        eventTitle, artistId);
+            }
+
+            Event event = eventFromJson(json, location, artist);
             eventRepository.save(event);
         }
+    }
+
+    // Jackson liefert JSON-Zahlen als Integer, daher hier sauber nach Long
+    // konvertieren statt direkt zu casten (sonst ClassCastException).
+    private Long toLong(Object value) {
+        if (value == null) return null;
+        if (value instanceof Number number) return number.longValue();
+        return Long.parseLong(value.toString());
     }
 
     // -----------------------------

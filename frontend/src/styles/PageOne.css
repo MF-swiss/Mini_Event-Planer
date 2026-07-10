@@ -135,6 +135,13 @@
   background-color: #262a3f;
 }
 
+.form-hint {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #8c92b0;
+}
+
+
 /* ─── Events Section ─────────────────────────── */
 .events-list-section {
   margin-top: 32px;
@@ -145,6 +152,7 @@
   font-size: 1.3rem;
   color: #e0e3ec;
   font-weight: 600;
+  letter-spacing: 0.2px;
 }
 
 /* ─── Events List ─────────────────────────────── */
@@ -154,7 +162,7 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px; /* etwas mehr Luft */
 }
 
 /* ─── Event Card ─────────────────────────────── */
@@ -162,32 +170,32 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 18px 22px;
-  background-color: #23263a;
-  border: 1px solid #3b3f5a;
+  padding: 22px 26px;
+  background-color: #2b3048; /* gleiche Card-Farbe wie Add-Event */
+  border: 1px solid rgba(255,255,255,0.05);
   border-left: 4px solid #4c8bf5;
   border-radius: 12px;
-  transition: box-shadow 0.2s ease, transform 0.2s ease, border-left-color 0.2s ease;
-  gap: 18px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  transition: box-shadow 0.25s ease, transform 0.2s ease, border-left-color 0.25s ease;
+  gap: 20px;
 }
 
 .event-item:hover {
-  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.30);
   border-left-color: #6fa2f7;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 /* ─── Event Info ─────────────────────────────── */
 .event-info {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
   min-width: 0;
 }
 
 .event-info strong {
-  font-size: 15px;
+  font-size: 1rem;
   font-weight: 600;
   color: #f5f6fa;
   letter-spacing: 0.3px;
@@ -198,18 +206,26 @@
 }
 
 .event-info .event-description {
-  font-size: 13px;
+  font-size: 14px;
   color: #c2c7dd;
-  line-height: 1.5;
+  line-height: 1.55;
+  max-width: 700px;
 }
 
 /* ─── Meta Info ─────────────────────────────── */
+.event-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 6px;
+}
+
 .event-date,
 .event-location {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 12px;
+  font-size: 13px;
   color: #9aa0c2;
   font-variant-numeric: tabular-nums;
 }
@@ -227,14 +243,12 @@
 /* ─── Buttons ─────────────────────────────────── */
 .event-buttons {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   flex-shrink: 0;
 }
 
-.add-button,
 .edit-button,
-.delete-button,
-.back-button {
+.delete-button {
   padding: 8px 16px;
   font-size: 13px;
   font-weight: 500;
@@ -242,29 +256,9 @@
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
-  white-space: nowrap;
   letter-spacing: 0.2px;
 }
 
-.add-button:active,
-.edit-button:active,
-.delete-button:active,
-.back-button:active {
-  transform: scale(0.97);
-}
-
-/* Add */
-.add-button {
-  background-color: #3c9b5f;
-  color: #ffffff;
-  box-shadow: 0 3px 8px rgba(60,155,95,0.35);
-}
-.add-button:hover {
-  background-color: #358854;
-  box-shadow: 0 4px 10px rgba(60,155,95,0.45);
-}
-
-/* Edit */
 .edit-button {
   background-color: #4c8bf5;
   color: #ffffff;
@@ -275,7 +269,6 @@
   box-shadow: 0 4px 10px rgba(76,139,245,0.45);
 }
 
-/* Delete */
 .delete-button {
   background-color: #d9534f;
   color: #ffffff;
@@ -286,52 +279,22 @@
   box-shadow: 0 4px 10px rgba(217,83,79,0.45);
 }
 
-/* Back */
-.back-button {
-  background-color: #6c757d;
-  color: #ffffff;
-  box-shadow: 0 3px 8px rgba(108,117,125,0.35);
-}
-.back-button:hover {
-  background-color: #5b646b;
-  box-shadow: 0 4px 10px rgba(108,117,125,0.45);
-}
-
-/* ─── Empty State ─────────────────────────────── */
-.no-events {
-  padding: 24px;
-  text-align: center;
-  color: #b3b8cc;
-  font-size: 15px;
-  background-color: #23263a;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-}
-
-/* ─── Expired Events ─────────────────────────── */
-.event-item.expired {
-  opacity: 0.55;
-  border-left-color: #5a5f78;
-  filter: grayscale(15%);
-}
-
 /* ─── Artist-Chips ───────────────────────────── */
 .artist-chip-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  flex-basis: 100%;
-  margin-top: 4px;
+  gap: 8px;
+  margin-top: 8px;
 }
 
 .artist-chip {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background-color: #262a3f;
-  border: 1px solid #4c8bf566;
+  background-color: #23263a;
+  border: 1px solid rgba(76,139,245,0.35);
   color: #f5f6fa;
-  padding: 4px 8px 4px 10px;
+  padding: 5px 10px;
   border-radius: 999px;
   font-size: 12px;
 }
@@ -341,7 +304,6 @@
   border: none;
   color: #8c92b0;
   font-size: 14px;
-  line-height: 1;
   cursor: pointer;
   padding: 0 4px;
   border-radius: 50%;
@@ -353,35 +315,41 @@
   background-color: rgba(217,83,79,0.7);
 }
 
+.event-artist::before {
+  content: "🎤";
+  margin-right: 6px;
+  font-size: 12px;
+}
+
+
+/* ─── Empty State ─────────────────────────────── */
+.no-events {
+  padding: 26px;
+  text-align: center;
+  color: #b3b8cc;
+  font-size: 15px;
+  background-color: #2b3048;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+/* ─── Expired Events ─────────────────────────── */
+.event-item.expired {
+  opacity: 0.55;
+  border-left-color: #5a5f78;
+  filter: grayscale(15%);
+}
+
 /* ─── Responsive ─────────────────────────────── */
 @media (max-width: 768px) {
-  .page-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  .form-group {
-    flex-direction: column;
-  }
-
-  .form-group input,
-  .form-group select {
-    width: 100%;
-  }
-
   .event-item {
     flex-direction: column;
     align-items: flex-start;
-    gap: 14px;
+    gap: 16px;
   }
 
   .event-buttons {
     width: 100%;
     justify-content: flex-end;
-  }
-
-  .form-group textarea.description-textarea {
-    width: 100%;
   }
 }
