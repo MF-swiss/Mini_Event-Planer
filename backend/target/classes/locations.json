@@ -1,34 +1,47 @@
 [
   {
+    "id": 1,
     "name": "Industrieareal Bännli",
     "city": "Wolfwil",
     "country": "Schweiz",
-    "type": "Festivalgelände",
-    "capacity": 15000,
-    "description": "Das Industrieareal Bännli ist die Heimat der SONIC Rave Events und bietet ideale Infrastruktur, ÖV-Anbindung und überdachte Bereiche."
+    "type": "Outdoor / Indoor Mix",
+    "capacity": 8000,
+    "description": "Grosses Industrieareal mit mehreren Hallen und Outdoor-Bereichen, ideal für Raves."
   },
   {
-    "name": "Event Area Biddinghuizen",
+    "id": 2,
+    "name": "Eventgelände Biddinghuizen",
     "city": "Biddinghuizen",
     "country": "Niederlande",
-    "type": "Festivalgelände",
+    "type": "Outdoor Festivalgelände",
     "capacity": 60000,
-    "description": "Grosses Outdoor-Festivalgelände, bekannt als Austragungsort von Defqon 1."
+    "description": "International bekanntes Festivalgelände für Hardstyle-Events."
   },
   {
-    "name": "Axalp Airshow Area",
+    "id": 3,
+    "name": "Axalp Gebirge",
     "city": "Axalp",
     "country": "Schweiz",
-    "type": "Berggelände / Airshow",
+    "type": "Outdoor Berggelände",
     "capacity": 5000,
-    "description": "Spektakuläre Bergkulisse für die jährlichen Flugvorführungen der Schweizer Luftwaffe."
+    "description": "Spektakuläre Bergkulisse für Flugvorführungen der Schweizer Luftwaffe."
   },
   {
+    "id": 4,
     "name": "Schiessplatz Gnappiried",
     "city": "Stans",
     "country": "Schweiz",
     "type": "Outdoor Schiessanlage",
     "capacity": 2000,
-    "description": "Bekannte Schiessanlage in Stans, Austragungsort des Kristallschiessens."
+    "description": "Bekannte Schiesssportanlage für IPSC-Wettkämpfe und taktische Events."
+  },
+  {
+    "id": 5,
+    "name": "AlpArena",
+    "city": "Lenzerheide",
+    "country": "Schweiz",
+    "type": "Outdoor Bergarena",
+    "capacity": 4500,
+    "description": "Einzigartige Bergarena für elektronische Musik und Outdoor-Festivals."
   }
 ]

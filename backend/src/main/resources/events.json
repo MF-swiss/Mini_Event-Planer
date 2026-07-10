@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "title": "SONIC 34 – GEN3R4TION RAVE",
     "date": "2025-11-08",
     "description": "Die SONIC Gen3ration Rave Edition bringt am 8. November 2025 die Technoszene in Wolfwil zum Beben. Auf fünf Dancefloors treten internationale Top-Acts wie Astrix, Mauro Picotto, Ran-D, Deadly Guns & N-Vitral, Restricted, Gunz For Hire, Paolo Ferrara, Major Conspiracy, Luciid b2b Nachtsucht, D-Sturb, Outsiders, Korsakoff, Aversion, Dumonde aka JamX, Tha Playah, Devin Wild, Dasstudach und DJ Tatana auf. Der Event gilt seit Jahren als einer der wichtigsten elektronischen Anlässe der Schweiz und findet erneut im Industrieareal Bännli in Wolfwil statt. Dank perfekter Lage, ÖV-Anbindung, überdachten Bereichen und Shuttlebus ist die Location ideal für tausende Besucher. Aufgrund früherer Ausverkäufe wird der Vorverkauf empfohlen.",
@@ -7,6 +8,7 @@
     "artistId": 1
   },
   {
+    "id": 2,
     "title": "Defqon 1.",
     "date": "2027-06-12",
     "description": "Festival in Holland.",
@@ -14,6 +16,7 @@
     "artistId": 2
   },
   {
+    "id": 3,
     "title": "Fliegerschiessen AXALP",
     "date": "2026-10-10",
     "description": "Flugvorführungen der Schweizer Luftwaffe.",
@@ -21,10 +24,43 @@
     "artistId": 3
   },
   {
+    "id": 4,
     "title": "Kristallschiessen",
     "date": "2026-08-29",
     "description": "IPSC-Wettkampf mit Fokus auf Präzision, Schnelligkeit und taktisches Geschick.",
     "locationId": 4,
     "artistId": 4
+  },
+  {
+    "id": 5,
+    "title": "SONIC 35",
+    "date": "2026-11-07",
+    "description": "Am 7. November 2026 steht die Technogemeinde wieder Kopf und ganz im Zeichen der SONIC. Auch bei der SONIC 35 werden wiederum keine Mühe gescheut ein grandioses Programm auf die Beine zu stellen. Auf den 5 Dancefloors werden euch internationale und nationale DJ Grössen einheizen.",
+    "locationId": 1,
+    "artistId": 1
+  },
+  {
+    "id": 6,
+    "title": "Mountain Bass Festival",
+    "date": "2026-07-22",
+    "description": "Ein elektronisches Open-Air-Festival auf 2000 Metern Höhe mit Bass, Techno und Trance.",
+    "locationId": 5,
+    "artistId": 5
+  },
+  {
+    "id": 7,
+    "title": "Tactical Night",
+    "date": "2026-09-14",
+    "description": "Ein Mix aus Industrial-Techno und taktischen Showeinlagen – perfekt für Actionfans.",
+    "locationId": 4,
+    "artistId": 4
+  },
+  {
+    "id": 8,
+    "title": "Airwave Festival",
+    "date": "2027-05-18",
+    "description": "Elektronische Musik trifft auf Flugshows – ein einzigartiges Erlebnis für Fans von Trance und Aviation.",
+    "locationId": 3,
+    "artistId": 3
   }
 ]
