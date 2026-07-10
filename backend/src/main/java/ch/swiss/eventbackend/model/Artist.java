@@ -1,10 +1,18 @@
 package ch.swiss.eventbackend.model;
 
-import jakarta.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
 @Entity
-@Table(name = "artists")
 public class Artist {
 
     @Id
@@ -15,14 +23,16 @@ public class Artist {
     private String genre;
     private String origin;
     private String experience;
+    @Column(columnDefinition = "TEXT")
     private String description;
 
-    // --- Beziehung: Ein Artist hat viele Events ---
+    // Inverse Side: Artist (@OneToMany(mappedBy = "artist"))
+    @JsonIgnore // verhindert Endlos-Schleife beim Serialisieren (Artist -> Events -> Artist -> ...)
     @OneToMany(mappedBy = "artist")
-    private List<Event> events;
+    private List<Event> events = new ArrayList<>();
 
-    // --- Konstruktoren ---
     public Artist() {
+        // JPA benötigt einen leeren Konstruktor
     }
 
     public Artist(String name, String genre, String origin, String experience, String description) {
@@ -33,7 +43,6 @@ public class Artist {
         this.description = description;
     }
 
-    // --- Getter & Setter ---
     public Long getId() {
         return id;
     }

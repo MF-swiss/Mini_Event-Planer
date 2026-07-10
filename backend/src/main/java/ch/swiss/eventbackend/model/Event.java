@@ -1,10 +1,17 @@
 package ch.swiss.eventbackend.model;
 
-import jakarta.persistence.*;
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
 @Entity
-@Table(name = "events")
 public class Event {
 
     @Id
@@ -12,26 +19,22 @@ public class Event {
     private Long id;
 
     private String title;
-
     private LocalDate date;
-
-    @Lob
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    // --- Beziehungen ---
-
-    @ManyToOne
+    // Owning Side: Event (@JoinColumn(name = "location_id"))
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "location_id")
     private Location location;
 
-    @ManyToOne
+    // Owning Side: Event (@JoinColumn(name = "artist_id"))
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "artist_id")
     private Artist artist;
 
-    // --- Konstruktoren ---
-
     public Event() {
+        // JPA benötigt einen leeren Konstruktor
     }
 
     public Event(String title, LocalDate date, String description, Location location, Artist artist) {
@@ -41,8 +44,6 @@ public class Event {
         this.location = location;
         this.artist = artist;
     }
-
-    // --- Getter & Setter ---
 
     public Long getId() {
         return id;

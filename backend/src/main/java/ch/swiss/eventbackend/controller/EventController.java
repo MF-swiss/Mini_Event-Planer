@@ -72,6 +72,32 @@ public class EventController {
                 .body(responseDto);
     }
 
+    // PUT /events/{id} → 200 OK, 400 Bad Request oder 404 Not Found
+    @PutMapping("/{id}")
+    public ResponseEntity<EventDTO> updateEvent(@PathVariable Long id, @RequestBody EventDTO dto) {
+        Event existing = eventService.getEventById(id);
+        if (existing == null) {
+            return ResponseEntity.notFound().build(); // 404
+        }
+
+        // Validierung → 400 Bad Request
+        if (dto.title() == null || dto.title().isBlank()) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        Location location = locationService.getLocationById(dto.locationId());
+        Artist artist = artistService.getArtistById(dto.artistId());
+
+        existing.setTitle(dto.title());
+        existing.setDate(dto.date());
+        existing.setDescription(dto.description());
+        existing.setLocation(location);
+        existing.setArtist(artist);
+
+        Event updated = eventService.saveEvent(existing);
+        return ResponseEntity.ok(eventMapper.toDTO(updated)); // 200
+    }
+
     // DELETE /events/{id} → 204 No Content oder 404
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEvent(@PathVariable Long id) {

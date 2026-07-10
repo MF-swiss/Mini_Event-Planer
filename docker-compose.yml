@@ -11,15 +11,14 @@ services:
       POSTGRES_USER: eventUser
       POSTGRES_PASSWORD: eventPW
     ports:
-      - "5433:5432"   # <— hier ändern!
+      - "5433:5432"
     volumes:
       - event-data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -d eventdb"]
+      test: ["CMD-SHELL", "pg_isready -U eventUser -d eventdb"]
       interval: 5s
       timeout: 5s
       retries: 10
-
 
   backend:
     build:

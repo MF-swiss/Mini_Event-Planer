@@ -1,0 +1,64 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-box {
+  background: #3d4166;
+  border: 1px solid #00e1ff44;
+  border-radius: 10px;
+  padding: 24px;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 0 24px rgba(0, 225, 255, 0.15);
+}
+
+.modal-box h3 {
+  color: #00e1ff;
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-form input {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: #2a2d4d;
+  color: #fff;
+}
+
+.modal-error {
+  color: #ff6b6b;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.modal-buttons button {
+  flex: 1;
+}
+
+.select-with-new {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}

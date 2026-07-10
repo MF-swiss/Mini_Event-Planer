@@ -1,10 +1,18 @@
 package ch.swiss.eventbackend.model;
 
-import jakarta.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
 @Entity
-@Table(name = "locations")
 public class Location {
 
     @Id
@@ -15,15 +23,19 @@ public class Location {
     private String city;
     private String country;
     private String type;
+
     private int capacity;
+
+    @Column(columnDefinition = "TEXT")
     private String description;
 
-    // --- Beziehung: Eine Location hat viele Events ---
+    // Inverse Side: Location (@OneToMany(mappedBy = "location"))
+    @JsonIgnore // verhindert Endlos-Schleife beim Serialisieren (Location -> Events -> Location -> ...)
     @OneToMany(mappedBy = "location")
-    private List<Event> events;
+    private List<Event> events = new ArrayList<>();
 
-    // --- Konstruktoren ---
     public Location() {
+        // JPA benötigt einen leeren Konstruktor
     }
 
     public Location(String name, String city, String country, String type, int capacity, String description) {
@@ -35,7 +47,6 @@ public class Location {
         this.description = description;
     }
 
-    // --- Getter & Setter ---
     public Long getId() {
         return id;
     }
