@@ -56,7 +56,8 @@ Alle Tests laufen grün und erfüllen die LB‑Vorgaben.
 
 ## 🏗 Architektur
 📂 Backend‑Struktur
-Code
+
+```
 backend/
  └── src/main/java/ch/swiss/eventbackend/
       ├── controller/      → REST‑API
@@ -65,6 +66,7 @@ backend/
       ├── model/           → Entities
       ├── dto/             → API‑Modelle
       └── mapper/          → DTO‑Mapping
+```
 
 ## 🐳 Docker
 Das Backend kann vollständig über Docker gestartet werden.
