@@ -80,16 +80,92 @@ Events
 | DELETE  | /events/{id} | Event löschen           |
 
 
-## 🎨 Frontend
-Das Frontend wird später ergänzt.
-*****************************
-*****************************
-*****************************
-*****************************
-*****************************
+## 🎨 Frontend (React + Vite)
 
-(Platzhalter für zukünftige Beschreibung)
+Das Frontend ist eine schlanke Single-Page-Anwendung zur Verwaltung von Events, Locations und Artists. Es konsumiert ausschliesslich die REST-API des Backends und bildet das vollständige CRUD für Events ab.
 
+### Features (Frontend)
+
+✔ Events verwalten
+* Übersicht aller Events, chronologisch sortiert
+* Neues Event erstellen (Titel, Datum, Beschreibung, Location, Artist)
+* Bestehendes Event bearbeiten
+* Event löschen (mit Bestätigungsdialog)
+* Abgelaufene Events werden optisch abgesetzt (ausgegraut)
+
+✔ Location & Artist „on the fly" erstellen
+* Dropdown-Auswahl für bestehende Locations/Artists
+* Option „+ Neue Location/Artist erstellen" öffnet ein Modal, ohne das Event-Formular zu verlassen
+* Neu erstellte Einträge stehen sofort im Dropdown zur Auswahl
+
+✔ Validierung
+* Pflichtfelder sind sowohl im Event-Formular als auch in den Modals sichtbar markiert (`*`)
+* Clientseitige Prüfung vor dem Absenden, mit verständlicher Fehlermeldung
+
+✔ UI/UX
+* Dunkles, modernes Kartendesign
+* Responsives Layout (Grid-Umbruch auf schmalen Bildschirmen)
+* Konsistente Icon-Kennzeichnung (📅 Datum, 📍 Location, 🎤 Artist)
+
+### Tech-Stack
+
+* React (funktionale Komponenten, Hooks: `useState`, `useEffect`)
+* Vite als Build-Tool und Dev-Server
+* Fetch-API für die Kommunikation mit dem Backend
+* Reines CSS (kein UI-Framework), thematisch an das Backend-Farbschema angelehnt
+
+### 📂 Frontend-Struktur
+
+```
+frontend/
+ └── src/
+      ├── pages/
+      │    └── PageOne.jsx        → Event-Übersicht, Erstellen/Bearbeiten-Formulare
+      ├── components/
+      │    ├── Countdown.jsx      → Post für die Startseite, zeigt verbleibende Zeit bis zum nächsten Eventbeginn
+      │    ├── LocationModal.jsx  → Modal zum Anlegen einer neuen Location
+      │    └── ArtistModal.jsx    → Modal zum Anlegen eines neuen Artists
+      └── styles/
+           ├── Post.css           → Post mit Countdown auf der Startseite
+           ├── PageOne.css        → Styling der Event-Übersicht
+           └── Modal.css          → Styling der Modals
+```
+
+### ⚙️ Setup
+
+1. Ins Frontend-Verzeichnis wechseln:
+   ```
+   cd frontend
+   ```
+2. Abhängigkeiten installieren:
+   ```
+   npm install
+   ```
+3. `.env`-Datei anlegen mit der Backend-URL:
+   ```
+   VITE_API_URL=http://localhost:8080
+   ```
+4. Dev-Server starten:
+   ```
+   npm run dev
+   ```
+
+Das Frontend läuft anschliessend standardmässig unter `http://localhost:5173` und erwartet ein laufendes Backend unter der in `.env` hinterlegten URL.
+
+### 🔌 Verwendete Endpoints
+
+Das Frontend nutzt folgende Endpoints des Backends:
+
+| Methode | Endpoint          | Verwendung im Frontend                   |
+| ------- | ----------------- | ---------------------------------------- |
+| GET     | /events           | Event-Liste beim Laden der Seite         |
+| POST    | /events           | Neues Event über das Formular anlegen    |
+| PUT     | /events/{id}      | Event bearbeiten                         |
+| DELETE  | /events/{id}      | Event löschen                            |
+| GET     | /locations        | Location-Dropdown befüllen               |
+| POST    | /locations        | Neue Location über LocationModal anlegen |
+| GET     | /artists          | Artist-Dropdown befüllen                 |
+| POST    | /artists          | Neuer Artist über ArtistModal anlegen    |
 
 
 ## 📄 Lizenz
