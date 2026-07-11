@@ -34,7 +34,7 @@ Das Backend stellt eine vollständige REST‑API bereit und basiert auf Spring B
 Das Backend enthält Integrationstests und Unit‑Tests.
 
 
-🔵 Integrationstests
+### 🔵 Integrationstests
 |         Test        |              Datei             |        Zweck         |
 | ------------------- | ------------------------------ | -------------------- |
 | GET /events         | EventControllerIntegrationTest | Liste abrufen        |
@@ -42,7 +42,7 @@ Das Backend enthält Integrationstests und Unit‑Tests.
 | Fehlerfälle         | EventErrorIntegrationTest      | 404 & 400 testen     |
 | DELETE /events/{id} | EventDeleteIntegrationTest     | Löschen & Fehlerfall |
 
-🟢 Unit‑Tests (C13)
+### 🟢 Unit‑Tests (C13)
 
 |      Testtyp       |	           Datei           |           	Zweck             |
 | ------------------ | --------------------------- | ------------------------------ |
