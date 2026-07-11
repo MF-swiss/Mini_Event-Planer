@@ -73,7 +73,9 @@ Das Backend kann vollständig über Docker gestartet werden.
 
 
 ### Code
+```
 docker compose up -d --build
+```
 
 ### Services:
 * event-backend (Spring Boot)
