@@ -1,6 +1,7 @@
 package ch.swiss.eventbackend.controller;
 
 import ch.swiss.eventbackend.dto.EventDTO;
+import ch.swiss.eventbackend.exception.ResourceNotFoundException;
 import ch.swiss.eventbackend.mapper.EventMapper;
 import ch.swiss.eventbackend.model.Event;
 import ch.swiss.eventbackend.model.Location;
@@ -8,6 +9,7 @@ import ch.swiss.eventbackend.model.Artist;
 import ch.swiss.eventbackend.service.EventService;
 import ch.swiss.eventbackend.service.LocationService;
 import ch.swiss.eventbackend.service.ArtistService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +33,7 @@ public class EventController {
         this.eventMapper = eventMapper;
     }
 
-    // GET /events → 200 OK
+    // GET /events -> 200 OK
     @GetMapping
     public List<EventDTO> getAllEvents() {
         return eventService.getAllEvents()
@@ -40,53 +42,60 @@ public class EventController {
                 .toList();
     }
 
-    // GET /events/{id} → 200 OK oder 404 Not Found
+    // GET /events/{id} -> 200 OK oder 404 (via GlobalExceptionHandler)
     @GetMapping("/{id}")
-    public ResponseEntity<EventDTO> getEventById(@PathVariable Long id) {
+    public EventDTO getEventById(@PathVariable Long id) {
         Event event = eventService.getEventById(id);
         if (event == null) {
-            return ResponseEntity.notFound().build(); // 404
+            throw new ResourceNotFoundException("Event mit ID " + id + " wurde nicht gefunden");
         }
-        return ResponseEntity.ok(eventMapper.toDTO(event)); // 200
+        return eventMapper.toDTO(event);
     }
 
-    // POST /events → 201 Created
+    // POST /events -> 201 Created, 400 (Validation) oder 404 (Location/Artist unbekannt)
+    // @Valid löst bei ungültigen Daten automatisch eine
+    // MethodArgumentNotValidException aus, die zentral im
+    // GlobalExceptionHandler behandelt wird - keine manuelle
+    // if-Prüfung mehr nötig.
     @PostMapping
-    public ResponseEntity<EventDTO> createEvent(@RequestBody EventDTO dto) {
-
-        // Validierung → 400 Bad Request
-        if (dto.title() == null || dto.title().isBlank()) {
-            return ResponseEntity.badRequest().build();
-        }
+    public ResponseEntity<EventDTO> createEvent(@Valid @RequestBody EventDTO dto) {
 
         Location location = locationService.getLocationById(dto.locationId());
+        if (location == null) {
+            throw new ResourceNotFoundException("Location mit ID " + dto.locationId() + " wurde nicht gefunden");
+        }
+
         Artist artist = artistService.getArtistById(dto.artistId());
+        if (artist == null) {
+            throw new ResourceNotFoundException("Artist mit ID " + dto.artistId() + " wurde nicht gefunden");
+        }
 
         Event event = eventMapper.toEntity(dto, location, artist);
         Event saved = eventService.saveEvent(event);
         EventDTO responseDto = eventMapper.toDTO(saved);
 
-        // 201 Created + Location Header
         return ResponseEntity
                 .created(URI.create("/events/" + saved.getId()))
                 .body(responseDto);
     }
 
-    // PUT /events/{id} → 200 OK, 400 Bad Request oder 404 Not Found
+    // PUT /events/{id} -> 200 OK, 400 (Validation) oder 404 (Event/Location/Artist unbekannt)
     @PutMapping("/{id}")
-    public ResponseEntity<EventDTO> updateEvent(@PathVariable Long id, @RequestBody EventDTO dto) {
+    public ResponseEntity<EventDTO> updateEvent(@PathVariable Long id, @Valid @RequestBody EventDTO dto) {
         Event existing = eventService.getEventById(id);
         if (existing == null) {
-            return ResponseEntity.notFound().build(); // 404
-        }
-
-        // Validierung → 400 Bad Request
-        if (dto.title() == null || dto.title().isBlank()) {
-            return ResponseEntity.badRequest().build();
+            throw new ResourceNotFoundException("Event mit ID " + id + " wurde nicht gefunden");
         }
 
         Location location = locationService.getLocationById(dto.locationId());
+        if (location == null) {
+            throw new ResourceNotFoundException("Location mit ID " + dto.locationId() + " wurde nicht gefunden");
+        }
+
         Artist artist = artistService.getArtistById(dto.artistId());
+        if (artist == null) {
+            throw new ResourceNotFoundException("Artist mit ID " + dto.artistId() + " wurde nicht gefunden");
+        }
 
         existing.setTitle(dto.title());
         existing.setDate(dto.date());
@@ -95,16 +104,16 @@ public class EventController {
         existing.setArtist(artist);
 
         Event updated = eventService.saveEvent(existing);
-        return ResponseEntity.ok(eventMapper.toDTO(updated)); // 200
+        return ResponseEntity.ok(eventMapper.toDTO(updated));
     }
 
-    // DELETE /events/{id} → 204 No Content oder 404
+    // DELETE /events/{id} -> 204 No Content oder 404
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEvent(@PathVariable Long id) {
         boolean deleted = eventService.deleteEvent(id);
         if (!deleted) {
-            return ResponseEntity.notFound().build(); // 404
+            throw new ResourceNotFoundException("Event mit ID " + id + " wurde nicht gefunden");
         }
-        return ResponseEntity.noContent().build(); // 204
+        return ResponseEntity.noContent().build();
     }
 }
