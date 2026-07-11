@@ -71,8 +71,6 @@ backend/
 ## 🐳 Docker
 Das Backend kann vollständig über Docker gestartet werden.
 
-
-### Code
 ```
 docker compose up -d --build
 ```
@@ -143,23 +141,6 @@ frontend/
            ├── PageOne.css        → Styling der Event-Übersicht
            └── Modal.css          → Styling der Modals
 ```
-
-### ⚙️ Setup
-
-1. Ins Frontend-Verzeichnis wechseln:
-   ```
-   cd frontend
-   ```
-2. Abhängigkeiten installieren:
-   ```
-   npm install
-   ```
-3. Dev-Server starten:
-   ```
-   npm run dev
-   ```
-
-Das Frontend läuft anschliessend standardmässig unter `http://localhost:5173` und erwartet ein laufendes Backend unter der in `.env` hinterlegten URL.
 
 ### 🔌 Verwendete Endpoints
 
