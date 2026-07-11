@@ -154,11 +154,7 @@ frontend/
    ```
    npm install
    ```
-3. `.env`-Datei anlegen mit der Backend-URL:
-   ```
-   VITE_API_URL=http://localhost:8080
-   ```
-4. Dev-Server starten:
+3. Dev-Server starten:
    ```
    npm run dev
    ```
