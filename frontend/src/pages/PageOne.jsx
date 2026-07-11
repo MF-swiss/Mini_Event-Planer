@@ -4,13 +4,18 @@ import "../styles/Modal.css";
 import LocationModal from "../components/LocationModal";
 import ArtistModal from "../components/ArtistModal";
 
+// Basis-URL des Backends, aus der .env geladen (z.B. VITE_API_URL=http://localhost:8080)
 const API_URL = import.meta.env.VITE_API_URL;
+
+// Sentinel-Wert für die "+ Neue Location/Artist erstellen"-Option in den Dropdowns
 const NEW_OPTION_VALUE = "__new__";
 
+// Sortiert eine Event-Liste aufsteigend nach Datum (Kopie, mutiert das Original nicht)
 const sortByDate = (arr) =>
   [...arr].sort((a, b) => new Date(a.date) - new Date(b.date));
 
 export default function PageOne({ onNavigate }) {
+  // ─── State: geladene Daten ─────────────────────────────
   const [events, setEvents] = useState([]);
   const [locations, setLocations] = useState([]);
   const [artists, setArtists] = useState([]);
@@ -21,14 +26,14 @@ export default function PageOne({ onNavigate }) {
   const [validationError, setValidationError] = useState("");
   const [editValidationError, setEditValidationError] = useState("");
 
-  // New Event fields
+  // ─── State: Formularfelder "Neues Event" ───────────────
   const [newEventTitle, setNewEventTitle] = useState("");
   const [newEventDescription, setNewEventDescription] = useState("");
   const [newEventDate, setNewEventDate] = useState("");
   const [newLocationId, setNewLocationId] = useState("");
   const [newArtistId, setNewArtistId] = useState("");
 
-  // Edit fields
+  // ─── State: Formularfelder "Event bearbeiten" ──────────
   const [editingId, setEditingId] = useState(null);
   const [editTitle, setEditTitle] = useState("");
   const [editDescription, setEditDescription] = useState("");
@@ -36,13 +41,14 @@ export default function PageOne({ onNavigate }) {
   const [editLocationId, setEditLocationId] = useState("");
   const [editArtistId, setEditArtistId] = useState("");
 
-  // Modal control: which modal is open ("location" | "artist" | null)
-  // and which form triggered it ("new" | "edit"), so we know where to
-  // put the freshly created id once the modal saves successfully.
+  // ─── State: Modal-Steuerung ─────────────────────────────
+  // activeModal: welches Modal offen ist ("location" | "artist" | null)
+  // modalContext: welches Formular das Modal ausgelöst hat ("new" | "edit"),
+  // damit die neu erstellte ID im richtigen Formular landet.
   const [activeModal, setActiveModal] = useState(null);
   const [modalContext, setModalContext] = useState(null);
 
-  // Load events, locations, artists
+  // ─── Initiales Laden von Events, Locations und Artists ─
   useEffect(() => {
     async function loadAll() {
       try {
@@ -72,7 +78,10 @@ export default function PageOne({ onNavigate }) {
     loadAll();
   }, []);
 
-  // Location + Artist sind beides Single-Selects (1 Event -> 1 Location, 1 Artist)
+  // ─── Dropdown-Handler (Location + Artist sind Single-Selects) ───
+  // Bei Auswahl von NEW_OPTION_VALUE wird statt der ID das passende
+  // Modal geöffnet, damit direkt eine neue Location/Artist angelegt
+  // werden kann, ohne das Event-Formular zu verlassen.
   const handleLocationSelect = (value, context) => {
     if (value === NEW_OPTION_VALUE) {
       setModalContext(context);
@@ -98,6 +107,7 @@ export default function PageOne({ onNavigate }) {
     setModalContext(null);
   };
 
+  // Wird vom LocationModal aufgerufen, sobald eine neue Location gespeichert wurde
   const handleLocationCreated = (createdLocation) => {
     setLocations((prev) => [...prev, createdLocation]);
     if (modalContext === "new") setNewLocationId(String(createdLocation.id));
@@ -105,6 +115,7 @@ export default function PageOne({ onNavigate }) {
     closeModal();
   };
 
+  // Wird vom ArtistModal aufgerufen, sobald ein neuer Artist gespeichert wurde
   const handleArtistCreated = (createdArtist) => {
     setArtists((prev) => [...prev, createdArtist]);
     if (modalContext === "new") setNewArtistId(String(createdArtist.id));
@@ -112,8 +123,9 @@ export default function PageOne({ onNavigate }) {
     closeModal();
   };
 
-  // Add Event
+  // ─── Event erstellen ────────────────────────────────────
   const addEvent = async () => {
+    // Pflichtfeld-Validierung vor dem Request, um unnötige API-Calls zu vermeiden
     if (!newEventTitle.trim() || !newEventDate || !newLocationId || !newArtistId) {
       setValidationError(
         "Bitte Pflichtfelder beachten (Titel, Datum, Location und Artist sind erforderlich)"
@@ -157,7 +169,8 @@ export default function PageOne({ onNavigate }) {
     setNewArtistId("");
   };
 
-  // Start Edit
+  // ─── Event bearbeiten ────────────────────────────────────
+  // Befüllt das Edit-Formular mit den aktuellen Werten des gewählten Events
   const startEdit = (event) => {
     setEditingId(event.id);
     setEditValidationError("");
@@ -169,7 +182,6 @@ export default function PageOne({ onNavigate }) {
     setEditArtistId(event.artistId ? String(event.artistId) : "");
   };
 
-  // Save Edit
   const saveEdit = async (id) => {
     if (!editTitle.trim() || !editDate || !editLocationId || !editArtistId) {
       setEditValidationError(
@@ -219,7 +231,7 @@ export default function PageOne({ onNavigate }) {
     setEditArtistId("");
   };
 
-  // Delete Event
+  // ─── Event löschen ───────────────────────────────────────
   const deleteEvent = async (id) => {
     if (!window.confirm("Möchtest du dieses Event wirklich löschen?")) return;
 
@@ -236,16 +248,18 @@ export default function PageOne({ onNavigate }) {
     }
   };
 
+  // ─── Hilfsfunktionen: Location/Artist per ID nachschlagen ─
   // EventDTO liefert nur locationId/artistId, keine verschachtelten Objekte -
   // daher hier per id in den bereits geladenen Arrays nachschlagen.
-  // Number(...) auf beiden Seiten, da locationId/artistId je nach
-  // Response-Pfad als String oder Number ankommen kann - sonst matched
-  // die strikte Gleichheit nicht und die Karte bleibt leer.
+  // Number(...) auf beiden Seiten, da die IDs je nach Response-Pfad als
+  // String oder Number ankommen können - sonst matched die strikte
+  // Gleichheit nicht und die Karte bleibt leer.
   const getLocationById = (id) =>
     locations.find((loc) => Number(loc.id) === Number(id));
   const getArtistById = (id) =>
     artists.find((artist) => Number(artist.id) === Number(id));
 
+  // ─── Lade- / Fehlerzustand ───────────────────────────────
   if (isLoading) {
     return (
       <div>
@@ -267,6 +281,7 @@ export default function PageOne({ onNavigate }) {
 
   return (
     <div className="page-container">
+      {/* ─── Seitenkopf ─────────────────────────────────── */}
       <section className="page-header">
         <h1>Events Verwalten</h1>
         <button className="back-button" onClick={() => onNavigate("home")}>
@@ -274,7 +289,7 @@ export default function PageOne({ onNavigate }) {
         </button>
       </section>
 
-      {/* ADD EVENT */}
+      {/* ─── Formular: Neues Event hinzufügen ──────────────── */}
       <section className="add-event-section">
         <h2>Neues Event hinzufügen</h2>
 
@@ -342,7 +357,7 @@ export default function PageOne({ onNavigate }) {
         </div>
       </section>
 
-      {/* EDIT EVENT */}
+      {/* ─── Formular: Event bearbeiten (nur sichtbar wenn editingId gesetzt) ─── */}
       {editingId && (
         <section className="add-event-section">
           <h2>Event bearbeiten</h2>
@@ -416,7 +431,7 @@ export default function PageOne({ onNavigate }) {
         </section>
       )}
 
-      {/* EVENT LIST */}
+      {/* ─── Event-Liste ───────────────────────────────────── */}
       <section className="events-list-section">
         <h2>Bevorstehende Events ({events.length})</h2>
 
@@ -436,34 +451,58 @@ export default function PageOne({ onNavigate }) {
                   }`}
                 >
                   <div className="event-info">
+                    {/* Titel + Beschreibung */}
                     <strong>{event.title}</strong>
                     <p className="event-description">{event.description}</p>
 
+                    {/* Datum: einzeilig, Icon per CSS ::before */}
                     <span className="event-date">{event.date}</span>
 
-                    {/* Immer alle drei Zeilen rendern, mit "–" als Fallback,
-                        damit jede Karte gleich aufgebaut ist, egal ob
-                        Location/Artist-Daten (noch) fehlen. */}
-                    <div className="event-location">
-                      <strong>Location:</strong>{" "}
-                      {location ? `${location.name}, ${location.city}` : "–"}
-                      <br />
-                      {location?.country || "–"}
-                      <br />
-                      {location
-                        ? `${location.type ?? "–"} – Kapazität: ${location.capacity ?? "–"}`
-                        : "Kapazität: –"}
-                    </div>
+                    {/* ─── Meta-Grid: Location + Artist nebeneinander ─────
+                        Beide Blöcke haben exakt dieselbe Struktur
+                        (Kopfzeile + eingerückte Detailzeilen), damit die
+                        Karte einheitlich wirkt. Bei fehlenden Daten wird
+                        konsequent "–" angezeigt. */}
+                    <div className="event-meta-grid">
+                      <div className="event-meta-block event-location">
+                        <div className="event-meta-header">
+                          <strong>Location:</strong>{" "}
+                          <span className="event-meta-mainvalue">
+                            {location ? location.name : "–"}
+                          </span>
+                        </div>
+                        <div className="event-meta-details">
+                          <span className="event-meta-line">
+                            {location ? `${location.city}, ${location.country}` : "–"}
+                          </span>
+                          <span className="event-meta-line">
+                            {location
+                              ? `${location.type ?? "–"} – Kapazität: ${location.capacity ?? "–"}`
+                              : "Kapazität: –"}
+                          </span>
+                        </div>
+                      </div>
 
-                    <div className="event-artist">
-                      <strong>Artist:</strong> {artist?.name || "–"}
-                      <br />
-                      Genre: {artist?.genre || "–"}
-                      <br />
-                      Herkunft: {artist?.origin || "–"}
+                      <div className="event-meta-block event-artist">
+                        <div className="event-meta-header">
+                          <strong>Artist:</strong>{" "}
+                          <span className="event-meta-mainvalue">
+                            {artist ? artist.name : "–"}
+                          </span>
+                        </div>
+                        <div className="event-meta-details">
+                          <span className="event-meta-line">
+                            Genre: {artist?.genre || "–"}
+                          </span>
+                          <span className="event-meta-line">
+                            Herkunft: {artist?.origin || "–"}
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
+                  {/* Aktions-Buttons */}
                   <div className="event-buttons">
                     <button className="edit-button" onClick={() => startEdit(event)}>
                       Bearbeiten
@@ -480,6 +519,7 @@ export default function PageOne({ onNavigate }) {
         )}
       </section>
 
+      {/* ─── Modals: werden nur bei aktivem activeModal gerendert ─── */}
       {activeModal === "location" && (
         <LocationModal onClose={closeModal} onCreated={handleLocationCreated} />
       )}

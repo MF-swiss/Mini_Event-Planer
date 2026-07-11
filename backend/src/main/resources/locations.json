@@ -1,47 +1,98 @@
 [
   {
-    "id": 1,
     "name": "Industrieareal Bännli",
     "city": "Wolfwil",
     "country": "Schweiz",
-    "type": "Outdoor / Indoor Mix",
-    "capacity": 8000,
-    "description": "Grosses Industrieareal mit mehreren Hallen und Outdoor-Bereichen, ideal für Raves."
+    "type": "Festivalgelände",
+    "capacity": 15000,
+    "description": "Das Industrieareal Bännli ist die Heimat der SONIC Rave Events und bietet ideale Infrastruktur, ÖV-Anbindung und überdachte Bereiche."
   },
   {
-    "id": 2,
-    "name": "Eventgelände Biddinghuizen",
+    "name": "Event Area Biddinghuizen",
     "city": "Biddinghuizen",
     "country": "Niederlande",
-    "type": "Outdoor Festivalgelände",
+    "type": "Festivalgelände",
     "capacity": 60000,
-    "description": "International bekanntes Festivalgelände für Hardstyle-Events."
+    "description": "Grosses Outdoor-Festivalgelände, bekannt als Austragungsort von Defqon 1."
   },
   {
-    "id": 3,
-    "name": "Axalp Gebirge",
+    "name": "Axalp Airshow Area",
     "city": "Axalp",
     "country": "Schweiz",
-    "type": "Outdoor Berggelände",
+    "type": "Berggelände / Airshow",
     "capacity": 5000,
-    "description": "Spektakuläre Bergkulisse für Flugvorführungen der Schweizer Luftwaffe."
+    "description": "Spektakuläre Bergkulisse für die jährlichen Flugvorführungen der Schweizer Luftwaffe."
   },
   {
-    "id": 4,
     "name": "Schiessplatz Gnappiried",
     "city": "Stans",
     "country": "Schweiz",
     "type": "Outdoor Schiessanlage",
     "capacity": 2000,
-    "description": "Bekannte Schiesssportanlage für IPSC-Wettkämpfe und taktische Events."
+    "description": "Bekannte Schiessanlage in Stans, Austragungsort des Kristallschiessens."
   },
   {
-    "id": 5,
-    "name": "AlpArena",
-    "city": "Lenzerheide",
+    "name": "Grosse Schanze Bern",
+    "city": "Bern",
     "country": "Schweiz",
-    "type": "Outdoor Bergarena",
-    "capacity": 4500,
-    "description": "Einzigartige Bergarena für elektronische Musik und Outdoor-Festivals."
+    "type": "Festivalgelände",
+    "capacity": 20000,
+    "description": "Zentral gelegenes Festivalgelände oberhalb der Berner Altstadt, Heimat des Gurtenfestivals."
+  },
+  {
+    "name": "Grosse Allmend Frauenfeld",
+    "city": "Frauenfeld",
+    "country": "Schweiz",
+    "type": "Festivalgelände",
+    "capacity": 45000,
+    "description": "Weitläufiges Festivalgelände, bekannt als grösstes Hip-Hop-Openair der Schweiz."
+  },
+  {
+    "name": "Plaine de l'Asse",
+    "city": "Nyon",
+    "country": "Schweiz",
+    "type": "Festivalgelände",
+    "capacity": 40000,
+    "description": "Malerisches Festivalgelände am Genfersee, Austragungsort eines der grössten Openair-Festivals der Schweiz."
+  },
+  {
+    "name": "Saffa-Insel Zürich",
+    "city": "Zürich",
+    "country": "Schweiz",
+    "type": "Openair-Gelände",
+    "capacity": 15000,
+    "description": "Openair-Gelände am Zürichsee mit Blick auf die Alpen, beliebter Austragungsort für Sommerfestivals."
+  },
+  {
+    "name": "Hallenstadion Zürich",
+    "city": "Zürich",
+    "country": "Schweiz",
+    "type": "Arena",
+    "capacity": 13000,
+    "description": "Grösste Indoor-Arena der Schweiz, Austragungsort zahlreicher Konzerte und Sportevents."
+  },
+  {
+    "name": "Musical Theater Basel",
+    "city": "Basel",
+    "country": "Schweiz",
+    "type": "Konzertsaal",
+    "capacity": 1200,
+    "description": "Renommierter Basler Veranstaltungsort für hochkarätige Konzerte und Sessions."
+  },
+  {
+    "name": "Sittertobel St. Gallen",
+    "city": "St. Gallen",
+    "country": "Schweiz",
+    "type": "Festivalgelände",
+    "capacity": 18000,
+    "description": "Naturkulisse im Sittertobel, seit Jahrzehnten Austragungsort des Open Air St. Gallen."
+  },
+  {
+    "name": "Auditorium Stravinski",
+    "city": "Montreux",
+    "country": "Schweiz",
+    "type": "Konzertsaal",
+    "capacity": 1800,
+    "description": "Renommierter Konzertsaal am Genfersee, Hauptbühne des Montreux Jazz Festivals."
   }
 ]

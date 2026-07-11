@@ -62,5 +62,54 @@
     "description": "Elektronische Musik trifft auf Flugshows – ein einzigartiges Erlebnis für Fans von Trance und Aviation.",
     "locationId": 3,
     "artistId": 3
+  },
+  {
+    "title": "Openair Frauenfeld 2026",
+    "date": "2026-07-09",
+    "description": "Das grösste Hip-Hop-Openair der Schweiz auf der Grossen Allmend in Frauenfeld, mit nationalen und internationalen Acts auf mehreren Bühnen.",
+    "locationId": 6,
+    "artistId": 6
+  },
+  {
+    "title": "Paléo Festival Nyon 2026",
+    "date": "2026-07-21",
+    "description": "Eines der grössten Openair-Festivals der Schweiz auf der Plaine de l'Asse in Nyon, mit vielfältigem Line-up zwischen Rock, Pop und Weltmusik.",
+    "locationId": 7,
+    "artistId": 7
+  },
+  {
+    "title": "Zürich Openair 2026",
+    "date": "2026-08-27",
+    "description": "Electro- und House-lastiges Sommerfestival auf der Saffa-Insel in Zürich mit Blick auf den See und die Alpen.",
+    "locationId": 8,
+    "artistId": 8
+  },
+  {
+    "title": "Rock the Ring 2026",
+    "date": "2026-06-06",
+    "description": "Rock- und Metal-Festival im Hallenstadion Zürich mit kraftvollen Live-Acts vor grosser Kulisse.",
+    "locationId": 9,
+    "artistId": 9
+  },
+  {
+    "title": "Baloise Session 2026",
+    "date": "2026-11-10",
+    "description": "Intimes Konzertformat im Musical Theater Basel mit Jazz- und Chanson-Programm in besonderer Atmosphäre.",
+    "locationId": 10,
+    "artistId": 10
+  },
+  {
+    "title": "Open Air St. Gallen 2026",
+    "date": "2026-06-25",
+    "description": "Traditionsreiches Openair im Sittertobel bei St. Gallen mit vielseitigem Line-up zwischen Funk, Soul und Pop.",
+    "locationId": 11,
+    "artistId": 11
+  },
+  {
+    "title": "Montreux Jazz Festival 2026",
+    "date": "2026-07-03",
+    "description": "Weltbekanntes Jazzfestival am Genfersee mit Auftritten im Auditorium Stravinski und weiteren Bühnen entlang der Seepromenade.",
+    "locationId": 12,
+    "artistId": 12
   }
 ]

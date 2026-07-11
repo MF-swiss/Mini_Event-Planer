@@ -1,42 +1,86 @@
 [
   {
-    "id": 1,
-    "title": "SONIC 34 – GEN3R4TION RAVE",
-    "date": "2025-11-08",
-    "description": "Die SONIC Gen3ration Rave Edition bringt am 8. November 2025 die Technoszene in Wolfwil zum Beben. Auf fünf Dancefloors treten internationale Top-Acts wie Astrix, Mauro Picotto, Ran-D, Deadly Guns & N-Vitral, Restricted, Gunz For Hire, Paolo Ferrara, Major Conspiracy, Luciid b2b Nachtsucht, D-Sturb, Outsiders, Korsakoff, Aversion, Dumonde aka JamX, Tha Playah, Devin Wild, Dasstudach und DJ Tatana auf. Der Event gilt seit Jahren als einer der wichtigsten elektronischen Anlässe der Schweiz und findet erneut im Industrieareal Bännli in Wolfwil statt. Dank perfekter Lage, ÖV-Anbindung, überdachten Bereichen und Shuttlebus ist die Location ideal für tausende Besucher. Aufgrund früherer Ausverkäufe wird der Vorverkauf empfohlen.",
-    "locationId": 1,
-    "artistId": 1
+    "name": "Ran-D",
+    "genre": "Hardstyle",
+    "origin": "Niederlande",
+    "experience": "15 Jahre",
+    "description": "Ran-D gehört zu den weltweit führenden Hardstyle-Artists und ist bekannt für energiegeladene Live-Sets und internationale Festivalauftritte."
   },
   {
-    "id": 2,
-    "title": "Defqon 1.",
-    "date": "2027-06-12",
-    "description": "Festival in Holland.",
-    "locationId": 2,
-    "artistId": 2
+    "name": "Festival Artist",
+    "genre": "Hardstyle / EDM",
+    "origin": "Niederlande",
+    "experience": "10 Jahre",
+    "description": "Ein internationaler Festival-Performer, der regelmässig auf grossen Events wie Defqon 1 auftritt."
   },
   {
-    "id": 3,
-    "title": "Fliegerschiessen AXALP",
-    "date": "2026-10-10",
-    "description": "Flugvorführungen der Schweizer Luftwaffe.",
-    "locationId": 3,
-    "artistId": 3
+    "name": "Swiss Air Force Display Team",
+    "genre": "Airshow Performance",
+    "origin": "Schweiz",
+    "experience": "20 Jahre",
+    "description": "Das offizielle Vorführteam der Schweizer Luftwaffe, bekannt für spektakuläre Flugshows am Fliegerschiessen Axalp."
   },
   {
-    "id": 4,
-    "title": "Kristallschiessen",
-    "date": "2026-08-29",
-    "description": "IPSC-Wettkampf mit Fokus auf Präzision, Schnelligkeit und taktisches Geschick.",
-    "locationId": 4,
-    "artistId": 4
+    "name": "IPSC Shooter",
+    "genre": "Sport / IPSC",
+    "origin": "Schweiz",
+    "experience": "8 Jahre",
+    "description": "Professioneller IPSC-Schütze mit Fokus auf Präzision, Schnelligkeit und taktisches Geschick."
   },
   {
-    "id": 5,
-    "title": "SONIC 35",
-    "date": "2026-11-07",
-    "description": "Am 7. November 2026 steht die Technogemeinde wieder Kopf und ganz im Zeichen der SONIC. Auch bei der SONIC 35 werden wiederum keine Mühe gescheut ein grandioses Programm auf die Beine zu stellen. Auf den 5 Dancefloors werden euch internationale und nationale DJ Grössen einheizen.",
-    "locationId": 1,
-    "artistId": 1
+    "name": "Wave Riders",
+    "genre": "Indie / Pop",
+    "origin": "Schweiz",
+    "experience": "6 Jahre",
+    "description": "Aufstrebende Schweizer Indie-Pop-Band, bekannt für mitreissende Live-Auftritte auf Openair-Bühnen."
+  },
+  {
+    "name": "Nightflow",
+    "genre": "Hip-Hop",
+    "origin": "Schweiz",
+    "experience": "9 Jahre",
+    "description": "Schweizer Hip-Hop-Act mit mehreren Charterfolgen, bekannt für energiegeladene Bühnenshows."
+  },
+  {
+    "name": "Alpine Rockers",
+    "genre": "Rock",
+    "origin": "Schweiz",
+    "experience": "12 Jahre",
+    "description": "Rockband aus den Schweizer Bergen, seit über einem Jahrzehnt fester Bestandteil grosser Openair-Festivals."
+  },
+  {
+    "name": "DJ Solstice",
+    "genre": "Electro / House",
+    "origin": "Schweiz",
+    "experience": "7 Jahre",
+    "description": "DJ und Produzent mit Fokus auf treibende House- und Electro-Sets, regelmässiger Gast bei Schweizer Openairs."
+  },
+  {
+    "name": "Iron Peaks",
+    "genre": "Rock / Metal",
+    "origin": "Schweiz",
+    "experience": "14 Jahre",
+    "description": "Rock/Metal-Band mit kraftvollem Live-Sound, bekannt für ihre Auftritte in grossen Arenen."
+  },
+  {
+    "name": "Basel Jazz Ensemble",
+    "genre": "Jazz / Chanson",
+    "origin": "Schweiz",
+    "experience": "18 Jahre",
+    "description": "Renommiertes Basler Ensemble mit stilübergreifenden Jazz- und Chanson-Programmen."
+  },
+  {
+    "name": "Groove Machine",
+    "genre": "Funk / Soul",
+    "origin": "Schweiz",
+    "experience": "11 Jahre",
+    "description": "Funk- und Soul-Band mit mitreissender Bläsersektion, bekannt für energiegeladene Festivalauftritte."
+  },
+  {
+    "name": "Jazz Collective Montreux",
+    "genre": "Jazz",
+    "origin": "Schweiz",
+    "experience": "16 Jahre",
+    "description": "Jazz-Kollektiv mit wechselnder Besetzung, regelmässig zu Gast an renommierten Jazzfestivals."
   }
 ]
