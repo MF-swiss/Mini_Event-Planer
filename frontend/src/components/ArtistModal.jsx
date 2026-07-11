@@ -14,7 +14,7 @@ export default function ArtistModal({ onClose, onCreated }) {
 
   const handleSave = async () => {
     if (!name.trim()) {
-      setError("Bitte Name angeben.");
+      setError("Bitte Pflichtfelder beachten (Name ist erforderlich).");
       return;
     }
 
@@ -51,9 +51,11 @@ export default function ArtistModal({ onClose, onCreated }) {
         <h3>Neuer Artist</h3>
 
         <div className="modal-form">
+          {/* Pflichtfeld: Stern im Placeholder macht sofort sichtbar,
+              welches Feld zwingend ausgefüllt werden muss. */}
           <input
             type="text"
-            placeholder="Name"
+            placeholder="Name *"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -81,6 +83,12 @@ export default function ArtistModal({ onClose, onCreated }) {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
+
+          {/* Hinweis auf die Pflichtfelder, konsistent mit dem
+              Event-Formular in PageOne.jsx */}
+          <p style={{ fontSize: "12px", color: "#8c92b0", margin: "4px 0 0" }}>
+            *Pflichtfelder beachten: Name.
+          </p>
 
           {error && <div className="modal-error">{error}</div>}
 

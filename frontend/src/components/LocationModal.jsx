@@ -15,7 +15,7 @@ export default function LocationModal({ onClose, onCreated }) {
 
   const handleSave = async () => {
     if (!name.trim() || !city.trim()) {
-      setError("Bitte Name und Stadt angeben.");
+      setError("Bitte Pflichtfelder beachten (Name und Stadt sind erforderlich).");
       return;
     }
 
@@ -53,15 +53,17 @@ export default function LocationModal({ onClose, onCreated }) {
         <h3>Neue Location</h3>
 
         <div className="modal-form">
+          {/* Pflichtfelder: Stern im Placeholder macht sofort sichtbar,
+              welche Felder zwingend ausgefüllt werden müssen. */}
           <input
             type="text"
-            placeholder="Name"
+            placeholder="Name *"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
           <input
             type="text"
-            placeholder="Stadt"
+            placeholder="Stadt *"
             value={city}
             onChange={(e) => setCity(e.target.value)}
           />
@@ -89,6 +91,12 @@ export default function LocationModal({ onClose, onCreated }) {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
+
+          {/* Hinweis auf die Pflichtfelder, konsistent mit dem
+              Event-Formular in PageOne.jsx */}
+          <p style={{ fontSize: "12px", color: "#8c92b0", margin: "4px 0 0" }}>
+            *Pflichtfelder beachten: Name &amp; Stadt.
+          </p>
 
           {error && <div className="modal-error">{error}</div>}
 
