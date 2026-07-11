@@ -1,42 +1,40 @@
-# 📘 Mini Event‑Planer – Backend (Spring Boot)
+# 📘 Mini Event‑Planer – Backend & Frontend
 
-Dies ist das Backend des Mini Event‑Planers, entwickelt im Rahmen des Moduls M295.
-Das Projekt stellt eine vollständige REST‑API zur Verwaltung von Events, Locations und Artists bereit.
+Dies ist der Mini Event‑Planer, entwickelt im Rahmen des Moduls M295.
+Das Projekt besteht aus einem Spring Boot Backend und einem React + Vite Frontend.
+Es bietet eine vollständige REST‑API sowie eine moderne Single‑Page‑Anwendung zur Verwaltung von Events, Locations und Artists.
 
-Das Backend basiert auf Spring Boot 3, nutzt DTO‑Mapping, Services, Repositories und ist vollständig mit Integrationstests abgesichert.
+## 🚀 Backend (Spring Boot)
 
-## 🚀 Features (Backend)
+Das Backend stellt eine vollständige REST‑API bereit und basiert auf Spring Boot 3, DTO‑Mapping, Services, Repositories und JUnit‑Tests.
 
-✔ Events verwalten
+## ✔ Features
+### Events verwalten
 * Event erstellen
 * Event abrufen
+* Event bearbeiten
 * Event löschen
 * Fehlerfälle (404 / 400) sauber implementiert
 * REST‑konforme Statuscodes (201, 200, 204, 404, 400)
 
-✔ DTO‑Mapping
+### DTO‑Mapping
 * Klare Trennung zwischen Entity und API‑Modell
-* EventMapper für saubere Konvertierung
+* EventMapper für Entity ↔ DTO Konvertierung
 
-✔ Services
+### Services
 * Business‑Logik ausgelagert
-* Validierung und Fehlerbehandlung im Service
+* Validierung und Fehlerbehandlung zentralisiert
 
-✔ Repository
+### Repository
 * Spring Data JPA
 * H2‑InMemory‑DB für Tests
 * PostgreSQL für Docker‑Deployment
 
-✔ Integrationstests
-* GET /events
-* POST /events
-* DELETE /events/{id}
-
-Fehlerfälle (404, 400)
-
 ## 🧪 Tests
-Das Backend enthält vollständige Integrationstests mit MockMvc:
+Das Backend enthält Integrationstests und Unit‑Tests.
 
+
+🔵 Integrationstests
 |         Test        |              Datei             |        Zweck         |
 | ------------------- | ------------------------------ | -------------------- |
 | GET /events         | EventControllerIntegrationTest | Liste abrufen        |
@@ -44,6 +42,15 @@ Das Backend enthält vollständige Integrationstests mit MockMvc:
 | Fehlerfälle         | EventErrorIntegrationTest      | 404 & 400 testen     |
 | DELETE /events/{id} | EventDeleteIntegrationTest     | Löschen & Fehlerfall |
 
+🟢 Unit‑Tests (C13)
+
+|      Testtyp       |	           Datei           |           	Zweck             |
+| ------------------ | --------------------------- | ------------------------------ |
+| Repository       	| EventRepositoryTest	      | Persistenzlogik testen         |
+| Service         	| EventServiceTest	         | Business‑Logik isoliert testen |
+| Controller GET	   | EventControllerGetTest	   | DTO‑Mapping & Response testen  |
+| Controller POST	   | EventControllerPostTest  	| Validierung & Mapping testen   |
+| Controller DELETE	| EventControllerDeleteTest	| Löschlogik & Fehlerfall testen |
 
 Alle Tests laufen grün und erfüllen die LB‑Vorgaben.
 
@@ -62,11 +69,11 @@ backend/
 ## 🐳 Docker
 Das Backend kann vollständig über Docker gestartet werden.
 
-Beispiel:
-Code
+
+### Code
 docker compose up -d --build
 
-Services:
+### Services:
 * event-backend (Spring Boot)
 * PostgreSQL Datenbank
 
@@ -77,12 +84,14 @@ Events
 | GET     | /events      | Alle Events abrufen     |
 | GET     | /events/{id} | Einzelnes Event abrufen |
 | POST    | /events      | Neues Event erstellen   |
+| PUT     | /events/{id} | Event bearbeiten        |
 | DELETE  | /events/{id} | Event löschen           |
 
 
 ## 🎨 Frontend (React + Vite)
 
-Das Frontend ist eine schlanke Single-Page-Anwendung zur Verwaltung von Events, Locations und Artists. Es konsumiert ausschliesslich die REST-API des Backends und bildet das vollständige CRUD für Events ab.
+Das Frontend ist eine moderne Single‑Page‑Anwendung zur Verwaltung von Events, Locations und Artists.
+Es konsumiert ausschliesslich die REST‑API des Backends.
 
 ### Features (Frontend)
 
@@ -107,7 +116,7 @@ Das Frontend ist eine schlanke Single-Page-Anwendung zur Verwaltung von Events, 
 * Responsives Layout (Grid-Umbruch auf schmalen Bildschirmen)
 * Konsistente Icon-Kennzeichnung (📅 Datum, 📍 Location, 🎤 Artist)
 
-### Tech-Stack
+## Tech-Stack
 
 * React (funktionale Komponenten, Hooks: `useState`, `useEffect`)
 * Vite als Build-Tool und Dev-Server
@@ -172,6 +181,6 @@ Das Frontend nutzt folgende Endpoints des Backends:
 Dieses Projekt wurde im Rahmen der Ausbildung an der WISS Schulen für Wirtschaft Informatik Immobilien AG erstellt.
 
 ## 👤 Autor
-Marco Fritsche & Luca Caputi
+Marco Fritsche & Luca Caputi  
 Aspiring Application Developer
 Schweiz
