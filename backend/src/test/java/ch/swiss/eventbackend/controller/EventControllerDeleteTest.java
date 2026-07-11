@@ -1,6 +1,5 @@
 package ch.swiss.eventbackend.controller;
 
-import ch.swiss.eventbackend.exception.ResourceNotFoundException;
 import ch.swiss.eventbackend.service.EventService;
 import ch.swiss.eventbackend.service.LocationService;
 import ch.swiss.eventbackend.service.ArtistService;

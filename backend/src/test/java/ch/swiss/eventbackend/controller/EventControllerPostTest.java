@@ -29,9 +29,6 @@ class EventControllerPostTest {
     @Autowired
     private MockMvc mockMvc;
 
-    // ---------------------------------------------------------
-    // Alle Abhängigkeiten des Controllers müssen gemockt werden
-    // ---------------------------------------------------------
     @MockBean
     private EventService eventService;
 
@@ -46,28 +43,6 @@ class EventControllerPostTest {
 
     @Test
     void createEvent_validRequest_returns201() throws Exception {
-
-        // ---------------------------------------------------------
-        // Arrange: Eingehendes DTO (POST-Body)
-        // Reihenfolge MUSS exakt der Record-Signatur entsprechen:
-        //
-        // EventDTO(
-        //   Long id,
-        //   String title,
-        //   LocalDate date,
-        //   String description,
-        //   Long locationId,
-        //   Long artistId
-        // )
-        // ---------------------------------------------------------
-        EventDTO incomingDto = new EventDTO(
-                null,
-                "New Event",
-                LocalDate.parse("2026-01-01"),
-                "Created via POST",
-                1L,
-                1L
-        );
 
         // ---------------------------------------------------------
         // Arrange: Location + Artist (werden vom Controller geprüft)
